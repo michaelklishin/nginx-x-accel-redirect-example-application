@@ -6,5 +6,6 @@ figure out what internal redirect URI use for what file location.
 See config/nginx_config_sample with a couple of comments, Files
 controller for code and public/files directory content to see
 how Nginx concatenates internal redirect path with root.
+And don't forget to add x-accel-redirect.local to your /etc/hosts.
 
 Hopy this saves you some time.
