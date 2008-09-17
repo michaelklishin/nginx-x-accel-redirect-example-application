@@ -1,0 +1,10 @@
+This example shows how you can use X-Accel-Redirect header to make
+Nginx stream files for you. Merb core has special method for it:
+Merb::Controller#nginx_send_file, but it's a bit tricky to
+figure out what internal redirect URI use for what file location.
+
+See config/nginx_config_sample with a couple of comments, Files
+controller for code and public/files directory content to see
+how Nginx concatenates internal redirect path with root.
+
+Hopy this saves you some time.
