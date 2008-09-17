@@ -10,13 +10,14 @@ class Files < Application
 
   # This is gonna be in merb-core 0.9.8, version in 0.9.7 does
   # not take care of content type and content disposition headers
-  # at all so it's not very useful and may be confusing for some
-  # people.
-  def nginx_send_file(path)
-    # Let Nginx detect content type unless it is explicitly set    
-    headers['Content-Type']        = ""
-    headers["Content-Disposition"] = "attachment; filename=#{path.split('/').last}"
+  # at all so it's not very useful and may be confusing for some.
+  def nginx_send_file(path, content_type = "")
+    # Let Nginx detect content type unless it is explicitly set
+    headers['Content-Type']        = content_type
+    headers["Content-Disposition"] ||= "attachment; filename=#{path.split('/').last}"
+    
     headers['X-Accel-Redirect']    = path
+    
     return ' '
   end  
 end
