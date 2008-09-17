@@ -1,0 +1,35 @@
+upstream x-accel-redirect-backend {
+  server 127.0.0.1:5000;
+}
+
+server {
+  server_name  x-accel-redirect.local;
+
+  listen       x-accel-redirect.local:80;
+  root         /Users/antares/dev/experiments/merb/x-accel-redirect-sample/public;
+
+  access_log    logs/access.x-accel-redirect.local.log combined;
+  error_log     logs/errors.x-accel-redirect.local.log error; # debug_http;
+	log_not_found on;
+
+  # rewrite_log on;
+
+	# accelerated file streaming location
+	location /protected/ {
+	  internal;
+		# NOTE: resulting file directory is public/files/protected/, keep that in mind
+		# 
+		# /protected/... path is internal so won't be accessible from the outside
+		# world even though it's shown in the URL after action dispatch
+		root /Users/antares/dev/experiments/merb/x-accel-redirect-sample/public/files/;
+	}
+	
+  location / {
+    proxy_redirect     off;
+    proxy_set_header   Host             $host;
+    proxy_set_header   X-Real-IP        $remote_addr;
+    proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+
+    proxy_pass         http://x-accel-redirect-backend;
+  }
+}

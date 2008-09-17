@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: PQueue</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />PQueue</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/lib/more/facets/pqueue_rb.html">lib/more/facets/pqueue.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><h1><a href="PQueue.html">PQueue</a></h1>
+<p>
+Priority queue with array based heap.
+</p>
+<p>
+A priority queue is like a standard queue, except that each inserted
+elements is given a certain priority, based on the result of the comparison
+block given at instantiation time. Also, retrieving an element from the
+queue will always return the one with the highest priority (see <a
+href="PQueue.html#M000678">pop</a> and <a
+href="PQueue.html#M000679">top</a>).
+</p>
+<p>
+The default is to compare the elements in repect to their #&gt; method. For
+example, Numeric elements with higher values will have higher priorities.
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000677">&lt;&lt;</a></li>
+  <li><a href="#M000692">==</a></li>
+  <li><a href="#M000684">clear</a></li>
+  <li><a href="#M000690">each_pop</a></li>
+  <li><a href="#M000683">empty?</a></li>
+  <li><a href="#M000689">include?</a></li>
+  <li><a href="#M000691">inspect</a></li>
+  <li><a href="#M000681">merge</a></li>
+  <li><a href="#M000675">new</a></li>
+  <li><a href="#M000678">pop</a></li>
+  <li><a href="#M000682">pop_array</a></li>
+  <li><a href="#M000676">push</a></li>
+  <li><a href="#M000680">push_all</a></li>
+  <li><a href="#M000685">replace</a></li>
+  <li><a href="#M000688">replace_top</a></li>
+  <li><a href="#M000687">sort</a></li>
+  <li><a href="#M000686">to_a</a></li>
+  <li><a href="#M000679">top</a></li>
+  </ul>
+
+
+
+
+
+  <div class="sectiontitle">Attributes</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>gt</td>
+    <td class='attr-desc'>
+compare <a href="Proc.html">Proc</a>
+
+</td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>size</td>
+    <td class='attr-desc'>
+number of elements
+
+</td>
+  </tr>
+  </table>
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000675"></a><b>new</b>(elements=nil) {|a, b| ...}
+  </div>
+  <div class="description">
+  <p>
+Returns a <a href="PQueue.html#M000675">new</a> priority queue.
+</p>
+<p>
+If elements are given, build the priority queue with these initial values.
+The elements object must respond to <a href="PQueue.html#M000686">to_a</a>.
+</p>
+<p>
+If a block is given, it will be used to determine the priority between the
+elements.
+</p>
+<p>
+By default, the priority queue retrieves maximum elements first (using the
+#&gt; method).
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000675_source')" id="l_M000675_source">show source</a> ]</p>
+  <div id="M000675_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 62</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">elements</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment cmt"># :yields: a, b</span>
+    <span class="ruby-ivar">@qarray</span> = [<span class="ruby-keyword kw">nil</span>]
+    <span class="ruby-ivar">@size</span> = <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@gt</span> = <span class="ruby-identifier">block</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>}
+    <span class="ruby-identifier">replace</span>(<span class="ruby-identifier">elements</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">elements</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000677"></a><b>&lt;&lt;</b>(v)
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="PQueue.html#M000676">push</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000692"></a><b>==</b>(other)
+  </div>
+  <div class="description">
+  <p>
+Return true if the queues contain equal elements.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000692_source')" id="l_M000692_source">show source</a> ]</p>
+  <div id="M000692_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 287</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">other</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">to_a</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">to_a</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000684"></a><b>clear</b>()
+  </div>
+  <div class="description">
+  <p>
+Remove all elements from the priority queue.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000684_source')" id="l_M000684_source">show source</a> ]</p>
+  <div id="M000684_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 216</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clear</span>
+    <span class="ruby-ivar">@qarray</span>.<span class="ruby-identifier">replace</span>([<span class="ruby-keyword kw">nil</span>])
+    <span class="ruby-ivar">@size</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000690"></a><b>each_pop</b>( {|popped| ...}
+  </div>
+  <div class="description">
+  <p>
+Iterate over the ordered elements, destructively.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000690_source')" id="l_M000690_source">show source</a> ]</p>
+  <div id="M000690_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 271</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_pop</span> <span class="ruby-comment cmt">#:yields: popped</span>
+    <span class="ruby-keyword kw">until</span> <span class="ruby-identifier">empty?</span>
+      <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">pop</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000683"></a><b>empty?</b>()
+  </div>
+  <div class="description">
+  <p>
+True if there is no more elements left in the priority queue.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000683_source')" id="l_M000683_source">show source</a> ]</p>
+  <div id="M000683_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 211</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@size</span>.<span class="ruby-identifier">zero?</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000689"></a><b>include?</b>(element)
+  </div>
+  <div class="description">
+  <p>
+Return true if the given object is present in the queue.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000689_source')" id="l_M000689_source">show source</a> ]</p>
+  <div id="M000689_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 266</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">include?</span>(<span class="ruby-identifier">element</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@qarray</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">element</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000691"></a><b>inspect</b>()
+  </div>
+  <div class="description">
+  <p>
+Pretty print
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000691_source')" id="l_M000691_source">show source</a> ]</p>
+  <div id="M000691_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 279</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inspect</span>
+    <span class="ruby-node">&quot;&lt;#{self.class}: size=#{@size}, top=#{top || &quot;nil&quot;}&gt;&quot;</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000681"></a><b>merge</b>(elements)
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="PQueue.html#M000680">push_all</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000678"></a><b>pop</b>()
+  </div>
+  <div class="description">
+  <p>
+Return the element with the highest priority and remove it from the queue.
+</p>
+<p>
+The highest priority is determined by the block given at instanciation
+time.
+</p>
+<p>
+The deletion time is O(log n), with n the size of the queue.
+</p>
+<p>
+Return nil if the queue is empty.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000678_source')" id="l_M000678_source">show source</a> ]</p>
+  <div id="M000678_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 161</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pop</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">res</span> = <span class="ruby-ivar">@qarray</span>[<span class="ruby-value">1</span>]
+    <span class="ruby-ivar">@qarray</span>[<span class="ruby-value">1</span>] = <span class="ruby-ivar">@qarray</span>[<span class="ruby-ivar">@size</span>]
+    <span class="ruby-ivar">@size</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">downheap</span>(<span class="ruby-value">1</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">res</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000682"></a><b>pop_array</b>(n=@size)
+  </div>
+  <div class="description">
+  <p>
+Return <a href="PQueue.html#M000679">top</a> n-element as a sorted array.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000682_source')" id="l_M000682_source">show source</a> ]</p>
+  <div id="M000682_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 203</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pop_array</span>(<span class="ruby-identifier">n</span>=<span class="ruby-ivar">@size</span>)
+    <span class="ruby-identifier">ary</span> = []
+    <span class="ruby-identifier">n</span>.<span class="ruby-identifier">times</span>{<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pop</span>)}
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ary</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000676"></a><b>push</b>(v)
+  </div>
+  <div class="description">
+  <p>
+Add an element in the priority queue.
+</p>
+<p>
+The insertion time is O(log n), with n the size of the queue.
+</p>
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="PQueue.html#M000677"><<</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000676_source')" id="l_M000676_source">show source</a> ]</p>
+  <div id="M000676_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 143</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">push</span>(<span class="ruby-identifier">v</span>)
+    <span class="ruby-ivar">@size</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-ivar">@qarray</span>[<span class="ruby-ivar">@size</span>] = <span class="ruby-identifier">v</span>
+    <span class="ruby-identifier">upheap</span>(<span class="ruby-ivar">@size</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000680"></a><b>push_all</b>(elements)
+  </div>
+  <div class="description">
+  <p>
+Add more than one element at the same time. See <a
+href="PQueue.html#M000676">push</a>.
+</p>
+<p>
+The elements object must respond to <a href="PQueue.html#M000686">to_a</a>,
+or to be a <a href="PQueue.html">PQueue</a> itself.
+</p>
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="PQueue.html#M000681">merge</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000680_source')" id="l_M000680_source">show source</a> ]</p>
+  <div id="M000680_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 179</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">push_all</span>(<span class="ruby-identifier">elements</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">empty?</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">PQueue</span>)
+        <span class="ruby-identifier">initialize_copy</span>(<span class="ruby-identifier">elements</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">replace</span>(<span class="ruby-identifier">elements</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">PQueue</span>)
+        <span class="ruby-ivar">@qarray</span>[<span class="ruby-ivar">@size</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">size</span>] = <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">qarray</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+        <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">times</span>{ <span class="ruby-ivar">@size</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>; <span class="ruby-identifier">upheap</span>(<span class="ruby-ivar">@size</span>)}
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">ary</span> = <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">to_a</span>
+        <span class="ruby-ivar">@qarray</span>[<span class="ruby-ivar">@size</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">size</span>] = <span class="ruby-identifier">ary</span>
+        <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">times</span>{ <span class="ruby-ivar">@size</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>; <span class="ruby-identifier">upheap</span>(<span class="ruby-ivar">@size</span>)}
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000685"></a><b>replace</b>(elements)
+  </div>
+  <div class="description">
+  <p>
+Replace the content of the heap by the <a
+href="PQueue.html#M000675">new</a> elements.
+</p>
+<p>
+The elements object must respond to <a href="PQueue.html#M000686">to_a</a>,
+or to be a <a href="PQueue.html">PQueue</a> itself.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000685_source')" id="l_M000685_source">show source</a> ]</p>
+  <div id="M000685_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 225</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">replace</span>(<span class="ruby-identifier">elements</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">PQueue</span>)
+      <span class="ruby-identifier">initialize_copy</span>(<span class="ruby-identifier">elements</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@qarray</span>.<span class="ruby-identifier">replace</span>([<span class="ruby-keyword kw">nil</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">to_a</span>)
+      <span class="ruby-ivar">@size</span> = <span class="ruby-ivar">@qarray</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">heapify</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000688"></a><b>replace_top</b>(v)
+  </div>
+  <div class="description">
+  <p>
+Replace the <a href="PQueue.html#M000679">top</a> element with the given
+one, and return this <a href="PQueue.html#M000679">top</a> element.
+</p>
+<p>
+Equivalent to successively calling <a href="PQueue.html#M000678">pop</a>
+and push(v).
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000688_source')" id="l_M000688_source">show source</a> ]</p>
+  <div id="M000688_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 251</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">replace_top</span>(<span class="ruby-identifier">v</span>)
+    <span class="ruby-comment cmt"># replace top element</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">empty?</span>
+      <span class="ruby-ivar">@qarray</span>[<span class="ruby-value">1</span>] = <span class="ruby-identifier">v</span>
+      <span class="ruby-ivar">@size</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">res</span> = <span class="ruby-ivar">@qarray</span>[<span class="ruby-value">1</span>]
+      <span class="ruby-ivar">@qarray</span>[<span class="ruby-value">1</span>] = <span class="ruby-identifier">v</span>
+      <span class="ruby-identifier">downheap</span>(<span class="ruby-value">1</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">res</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000687"></a><b>sort</b>()
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="PQueue.html#M000686">to_a</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000686"></a><b>to_a</b>()
+  </div>
+  <div class="description">
+  <p>
+Return a sorted array, with highest priority first.
+</p>
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="PQueue.html#M000687">sort</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000686_source')" id="l_M000686_source">show source</a> ]</p>
+  <div id="M000686_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 237</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_a</span>
+    <span class="ruby-identifier">old_qarray</span> = <span class="ruby-ivar">@qarray</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">old_size</span> = <span class="ruby-ivar">@size</span>
+    <span class="ruby-identifier">res</span> = <span class="ruby-identifier">pop_array</span>
+    <span class="ruby-ivar">@qarray</span> = <span class="ruby-identifier">old_qarray</span>
+    <span class="ruby-ivar">@size</span> = <span class="ruby-identifier">old_size</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">res</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000679"></a><b>top</b>()
+  </div>
+  <div class="description">
+  <p>
+Return the element with the highest priority.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000679_source')" id="l_M000679_source">show source</a> ]</p>
+  <div id="M000679_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/pqueue.rb, line 171</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">top</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@qarray</span>[<span class="ruby-value">1</span>]
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

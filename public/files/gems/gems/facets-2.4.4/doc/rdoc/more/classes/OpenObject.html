@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: OpenObject</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />OpenObject</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/lib/more/facets/openobject_rb.html">lib/more/facets/openobject.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+        <a href="Hash.html">
+Hash
+         </a>
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><h1><a href="OpenObject.html">OpenObject</a></h1>
+<p>
+<a href="OpenObject.html">OpenObject</a> is very similar to Ruby&#8216;s
+own OpenStruct, but it offers some useful advantages. With OpenStruct slots
+with the same name&#8216;s as predefined Object methods can not be used.
+With <a href="OpenObject.html">OpenObject</a> any slot can be defined,
+OpendObject is also a bit faster becuase it is based on a <a
+href="Hash.html">Hash</a>, not method signitures.
+</p>
+<p>
+Because <a href="OpenObject.html">OpenObject</a> is a subclass of <a
+href="Hash.html">Hash</a>, it can do just about everything a <a
+href="Hash.html">Hash</a> can do, except that most public methods have been
+made protected and thus available only internally or via send.
+</p>
+<p>
+<a href="OpenObject.html">OpenObject</a> will also clobber any method for
+which a slot is defined. Even generally very important methods can be
+clobbered, like instance_eval. So be aware of this. <a
+href="OpenObject.html">OpenObject</a> should be used in well controlled
+scenarios.
+</p>
+<p>
+If you wish to pass an <a href="OpenObject.html">OpenObject</a> to a
+routine that normal takes a <a href="Hash.html">Hash</a>, but are uncertain
+it can handle the distictions properly you can convert easily to a <a
+href="Hash.html">Hash</a> using <a
+href="OpenObject.html#M000332">to_hash</a>! and the result will
+automatically be converted back to an <a
+href="OpenObject.html">OpenObject</a> on return.
+</p>
+<pre>
+  o = OpenObject.new(:a=&gt;1,:b=&gt;2)
+  o.as_hash!{ |h| h.update(:a=&gt;6) }
+  o #=&gt; #&lt;OpenObject {:a=&gt;6,:b=&gt;2}&gt;
+</pre>
+<p>
+Finally, unlike a regular <a href="Hash.html">Hash</a>, all <a
+href="OpenObject.html">OpenObject</a>&#8216;s keys are symbols and all keys
+are converted to such using to_sym on the fly.
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000341">==</a></li>
+  <li><a href="#M000326">[]</a></li>
+  <li><a href="#M000343">[]</a></li>
+  <li><a href="#M000342">[]=</a></li>
+  <li><a href="#M000340">as_hash!</a></li>
+  <li><a href="#M000339">default!</a></li>
+  <li><a href="#M000346">define_slot</a></li>
+  <li><a href="#M000338">delete</a></li>
+  <li><a href="#M000335">each</a></li>
+  <li><a href="#M000345">fetch</a></li>
+  <li><a href="#M000328">initialize_copy</a></li>
+  <li><a href="#M000329">inspect</a></li>
+  <li><a href="#M000336">merge</a></li>
+  <li><a href="#M000348">method_missing</a></li>
+  <li><a href="#M000327">new</a></li>
+  <li><a href="#M000347">protect_slot</a></li>
+  <li><a href="#M000344">store</a></li>
+  <li><a href="#M000330">to_a</a></li>
+  <li><a href="#M000331">to_h</a></li>
+  <li><a href="#M000332">to_hash</a></li>
+  <li><a href="#M000334">to_openobject</a></li>
+  <li><a href="#M000333">to_proc</a></li>
+  <li><a href="#M000337">update</a></li>
+  </ul>
+
+
+
+
+  <div class="sectiontitle">Constants</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class="attr-name">PUBLIC_METHODS</td>
+    <td>=</td>
+    <td class="attr-value">/(^__|^instance_|^object_|^\W|^as$|^send$|^class$|\?$)/</td>
+  </tr>
+  </table>
+
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000326"></a><b>[]</b>(hash=nil)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000326_source')" id="l_M000326_source">show source</a> ]</p>
+  <div id="M000326_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 88</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-operator">[]</span>(<span class="ruby-identifier">hash</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-identifier">new</span>(<span class="ruby-identifier">hash</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000327"></a><b>new</b>( hash=nil, &amp;yld )
+  </div>
+  <div class="description">
+  <p>
+Inititalizer for <a href="OpenObject.html">OpenObject</a> is slightly
+differnt than that of <a href="Hash.html">Hash</a>. <a
+href="It.html">It</a> does not take a default parameter, but an initial
+priming <a href="Hash.html">Hash</a> as with OpenStruct. The initializer
+can still take a default block however. To set the degault value use
+++default!(value)++.
+</p>
+<pre>
+  OpenObject(:a=&gt;1).default!(0)
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000327_source')" id="l_M000327_source">show source</a> ]</p>
+  <div id="M000327_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 102</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">hash</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span> )
+    <span class="ruby-keyword kw">super</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span> )
+    <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">define_slot</span>(<span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span>) } <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000341"></a><b>==</b>( other )
+  </div>
+  <div class="description">
+  <p>
+Check equality. (Should equal be true for <a href="Hash.html">Hash</a>
+too?)
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000341_source')" id="l_M000341_source">show source</a> ]</p>
+  <div id="M000341_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 175</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>( <span class="ruby-identifier">other</span> )
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">OpenObject</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">other</span>
+    <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">other</span>) <span class="ruby-comment cmt">#(other.send(:table))</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000343"></a><b>[]</b>(k)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000343_source')" id="l_M000343_source">show source</a> ]</p>
+  <div id="M000343_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 185</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">k</span>)
+    <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000342"></a><b>[]=</b>(k,v)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000342_source')" id="l_M000342_source">show source</a> ]</p>
+  <div id="M000342_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 180</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span>)
+    <span class="ruby-identifier">protect_slot</span>(<span class="ruby-identifier">k</span>)
+    <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span>,<span class="ruby-identifier">v</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000340"></a><b>as_hash!</b>(&amp;yld)
+  </div>
+  <div class="description">
+  <p>
+Preform inplace action on <a href="OpenObject.html">OpenObject</a> as if it
+were a regular <a href="Hash.html">Hash</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000340_source')" id="l_M000340_source">show source</a> ]</p>
+  <div id="M000340_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 169</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">as_hash!</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span>)
+    <span class="ruby-identifier">replace</span>(<span class="ruby-identifier">yld</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">to_hash</span>))
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000339"></a><b>default!</b>(default)
+  </div>
+  <div class="description">
+  <p>
+Set the default value.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000339_source')" id="l_M000339_source">show source</a> ]</p>
+  <div id="M000339_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 159</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default!</span>(<span class="ruby-identifier">default</span>)
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">default</span> = <span class="ruby-identifier">default</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000338"></a><b>delete</b>(key)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000338_source')" id="l_M000338_source">show source</a> ]</p>
+  <div id="M000338_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 153</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">key</span>)
+    <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000335"></a><b>each</b>(&amp;yld)
+  </div>
+  <div class="description">
+  <p>
+Iterate over <a href="OpenObject.html#M000335">each</a> key-value pair.
+(Careful, this can be clobbered!)
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000335_source')" id="l_M000335_source">show source</a> ]</p>
+  <div id="M000335_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 130</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span>) <span class="ruby-keyword kw">super</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000328"></a><b>initialize_copy</b>( orig )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000328_source')" id="l_M000328_source">show source</a> ]</p>
+  <div id="M000328_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 107</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_copy</span>( <span class="ruby-identifier">orig</span> )
+    <span class="ruby-identifier">orig</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">define_slot</span>(<span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span>) }
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000329"></a><b>inspect</b>()
+  </div>
+  <div class="description">
+  <p>
+Object inspection. (Careful, this can be clobbered!)
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000329_source')" id="l_M000329_source">show source</a> ]</p>
+  <div id="M000329_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 113</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inspect</span>
+    <span class="ruby-node">&quot;#&lt;#{object_class}:#{object_hexid} #{super}&gt;&quot;</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000336"></a><b>merge</b>( other )
+  </div>
+  <div class="description">
+  <p>
+Merge one <a href="OpenObject.html">OpenObject</a> with another creating a
+<a href="OpenObject.html#M000327">new</a> <a
+href="OpenObject.html">OpenObject</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000336_source')" id="l_M000336_source">show source</a> ]</p>
+  <div id="M000336_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 134</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">merge</span>( <span class="ruby-identifier">other</span> )
+    <span class="ruby-identifier">d</span> = <span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">d</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:update</span>, <span class="ruby-identifier">other</span>)
+    <span class="ruby-identifier">d</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000330"></a><b>to_a</b>()
+  </div>
+  <div class="description">
+  <p>
+Conversion methods. (Careful, these can be clobbered!)
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000330_source')" id="l_M000330_source">show source</a> ]</p>
+  <div id="M000330_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 119</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_a</span>() <span class="ruby-keyword kw">super</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000331"></a><b>to_h</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000331_source')" id="l_M000331_source">show source</a> ]</p>
+  <div id="M000331_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 121</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_h</span>() {}.<span class="ruby-identifier">update</span>(<span class="ruby-keyword kw">self</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000332"></a><b>to_hash</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000332_source')" id="l_M000332_source">show source</a> ]</p>
+  <div id="M000332_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 122</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_hash</span>() {}.<span class="ruby-identifier">update</span>(<span class="ruby-keyword kw">self</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000334"></a><b>to_openobject</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000334_source')" id="l_M000334_source">show source</a> ]</p>
+  <div id="M000334_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 126</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_openobject</span>() <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000333"></a><b>to_proc</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000333_source')" id="l_M000333_source">show source</a> ]</p>
+  <div id="M000333_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 124</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_proc</span>() <span class="ruby-keyword kw">super</span>  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000337"></a><b>update</b>( other )
+  </div>
+  <div class="description">
+  <p>
+Update this <a href="OpenObject.html">OpenObject</a> with another.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000337_source')" id="l_M000337_source">show source</a> ]</p>
+  <div id="M000337_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 142</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>( <span class="ruby-identifier">other</span> )
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-identifier">other</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">define_slot</span>(<span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span>) }
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-identifier">other</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">to_h</span>
+      <span class="ruby-keyword kw">retry</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Protected Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000346"></a><b>define_slot</b>( key, value=nil )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000346_source')" id="l_M000346_source">show source</a> ]</p>
+  <div id="M000346_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 200</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">define_slot</span>( <span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span> )
+      <span class="ruby-identifier">protect_slot</span>( <span class="ruby-identifier">key</span> )
+      <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000345"></a><b>fetch</b>(k,*d,&amp;b)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000345_source')" id="l_M000345_source">show source</a> ]</p>
+  <div id="M000345_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 196</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">k</span>,<span class="ruby-operator">*</span><span class="ruby-identifier">d</span>,<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span>,<span class="ruby-operator">*</span><span class="ruby-identifier">d</span>,<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000348"></a><b>method_missing</b>( sym, arg=nil, &amp;blk)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000348_source')" id="l_M000348_source">show source</a> ]</p>
+  <div id="M000348_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 211</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>( <span class="ruby-identifier">sym</span>, <span class="ruby-identifier">arg</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>)
+      <span class="ruby-identifier">type</span> = <span class="ruby-identifier">sym</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">-1</span>,<span class="ruby-value">1</span>]
+      <span class="ruby-identifier">key</span> = <span class="ruby-identifier">sym</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/[=?!]$/</span>,<span class="ruby-value str">''</span>).<span class="ruby-identifier">to_sym</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'='</span>
+        <span class="ruby-identifier">define_slot</span>(<span class="ruby-identifier">key</span>,<span class="ruby-identifier">arg</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'!'</span>
+        <span class="ruby-identifier">define_slot</span>(<span class="ruby-identifier">key</span>,<span class="ruby-identifier">arg</span>)
+        <span class="ruby-keyword kw">self</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">key</span>]
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000347"></a><b>protect_slot</b>( key )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000347_source')" id="l_M000347_source">show source</a> ]</p>
+  <div id="M000347_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 205</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">protect_slot</span>( <span class="ruby-identifier">key</span> )
+      (<span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">self</span>; <span class="ruby-keyword kw">self</span>; <span class="ruby-keyword kw">end</span>).<span class="ruby-identifier">class_eval</span> {
+        <span class="ruby-identifier">protected</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+      }
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000344"></a><b>store</b>(k,v)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000344_source')" id="l_M000344_source">show source</a> ]</p>
+  <div id="M000344_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 191</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">store</span>(<span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span>)
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span>,<span class="ruby-identifier">v</span>)
+      <span class="ruby-identifier">define_slot</span>(<span class="ruby-identifier">k</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

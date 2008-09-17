@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Pathname</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Pathname</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/lib/lore/facets/pathname_rb.html">lib/lore/facets/pathname.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000087">/</a></li>
+  <li><a href="#M000086">[]</a></li>
+  <li><a href="#M000096">empty?</a></li>
+  <li><a href="#M000094">glob</a></li>
+  <li><a href="#M000095">glob_first</a></li>
+  <li><a href="#M000089">home</a></li>
+  <li><a href="#M000091">null</a></li>
+  <li><a href="#M000088">root</a></li>
+  <li><a href="#M000092">rootname</a></li>
+  <li><a href="#M000093">split_root</a></li>
+  <li><a href="#M000090">work</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000087"></a><b>/</b>(path)
+  </div>
+  <div class="description">
+  <p>
+Active path separator.
+</p>
+<pre>
+  p1 = Pathname.new('/')
+  p2 = p1 / 'usr' / 'share'   #=&gt; Pathname:/usr/share
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000087_source')" id="l_M000087_source">show source</a> ]</p>
+  <div id="M000087_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 41</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-operator">/</span>(<span class="ruby-identifier">path</span>)
+    <span class="ruby-identifier">new</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000086"></a><b>[]</b>(path)
+  </div>
+  <div class="description">
+  <p>
+Alternate to Pathname#new.
+</p>
+<pre>
+  Pathname['/usr/share']
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000086_source')" id="l_M000086_source">show source</a> ]</p>
+  <div id="M000086_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 32</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-operator">[]</span>(<span class="ruby-identifier">path</span>)
+    <span class="ruby-identifier">new</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000089"></a><b>home</b>()
+  </div>
+  <div class="description">
+  <p>
+Home constant for building paths from <a
+href="Pathname.html#M000088">root</a> directory onward.
+</p>
+<p>
+TODO: <a href="Pathname.html#M000089">Pathname#home</a> needs to be more
+robust.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000089_source')" id="l_M000089_source">show source</a> ]</p>
+  <div id="M000089_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 54</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">home</span>
+    <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'~'</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000091"></a><b>null</b>()
+  </div>
+  <div class="description">
+  <p>
+Platform dependent <a href="Pathname.html#M000091">null</a> device.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000091_source')" id="l_M000091_source">show source</a> ]</p>
+  <div id="M000091_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 71</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">null</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-constant">RUBY_PLATFORM</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/mswin/i</span>
+      <span class="ruby-value str">'NUL'</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/amiga/i</span>
+      <span class="ruby-value str">'NIL:'</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/openvms/i</span>
+      <span class="ruby-value str">'NL:'</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-value str">'/dev/null'</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000088"></a><b>root</b>()
+  </div>
+  <div class="description">
+  <p>
+Root constant for building paths from <a
+href="Pathname.html#M000088">root</a> directory onward.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000088_source')" id="l_M000088_source">show source</a> ]</p>
+  <div id="M000088_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 46</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">root</span>
+    <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'/'</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000090"></a><b>work</b>()
+  </div>
+  <div class="description">
+  <p>
+Work constant for building paths from <a
+href="Pathname.html#M000088">root</a> directory onward.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000090_source')" id="l_M000090_source">show source</a> ]</p>
+  <div id="M000090_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 60</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">work</span>
+    <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'.'</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000096"></a><b>empty?</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000096_source')" id="l_M000096_source">show source</a> ]</p>
+  <div id="M000096_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 155</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">empty?</span>
+    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-value str">'*'</span>)).<span class="ruby-identifier">empty?</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000094"></a><b>glob</b>(match, *opts)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000094_source')" id="l_M000094_source">show source</a> ]</p>
+  <div id="M000094_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 128</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">glob</span>(<span class="ruby-identifier">match</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)
+    <span class="ruby-identifier">flags</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opt</span> <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>, <span class="ruby-constant">String</span>
+        <span class="ruby-identifier">flags</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-node">&quot;FNM_#{opt}&quot;</span>.<span class="ruby-identifier">upcase</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">flags</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">opt</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">match</span>), <span class="ruby-identifier">flags</span>).<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">m</span>) }
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000095"></a><b>glob_first</b>(match, *opts)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000095_source')" id="l_M000095_source">show source</a> ]</p>
+  <div id="M000095_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 141</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">glob_first</span>(<span class="ruby-identifier">match</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)
+    <span class="ruby-identifier">flags</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opt</span> <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>, <span class="ruby-constant">String</span>
+        <span class="ruby-identifier">flags</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-node">&quot;FNM_#{opt}&quot;</span>.<span class="ruby-identifier">upcase</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">flags</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">opt</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">file</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">match</span>), <span class="ruby-identifier">flags</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">file</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">file</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000092"></a><b>rootname</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000092_source')" id="l_M000092_source">show source</a> ]</p>
+  <div id="M000092_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 85</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rootname</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">rootname</span>(<span class="ruby-identifier">to_s</span>))
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000093"></a><b>split_root</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000093_source')" id="l_M000093_source">show source</a> ]</p>
+  <div id="M000093_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/pathname.rb, line 122</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">split_root</span>
+    <span class="ruby-identifier">head</span>, <span class="ruby-identifier">tail</span> = <span class="ruby-operator">*</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">split_root</span>(<span class="ruby-identifier">to_s</span>)
+    [<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">head</span>), <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tail</span>)]
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Hash</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Hash</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/lib/more/facets/hash/symbolize_keys_rb.html">lib/more/facets/hash/symbolize_keys.rb</a>
+<a href="../files/lib/more/facets/xmlhash_rb.html">lib/more/facets/xmlhash.rb</a>
+<a href="../files/lib/more/facets/snapshot_rb.html">lib/more/facets/snapshot.rb</a>
+<a href="../files/lib/more/facets/openobject_rb.html">lib/more/facets/openobject.rb</a>
+<a href="../files/lib/more/facets/random_rb.html">lib/more/facets/random.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000293">restore_snapshot</a></li>
+  <li><a href="#M000289">stringify_keys</a></li>
+  <li><a href="#M000290">stringify_keys!</a></li>
+  <li><a href="#M000287">symbolize_keys</a></li>
+  <li><a href="#M000288">symbolize_keys!</a></li>
+  <li><a href="#M000292">take_snapshot</a></li>
+  <li><a href="#M000294">to_openobject</a></li>
+  <li><a href="#M000291">to_xml</a></li>
+  </ul>
+
+<div class="sectiontitle">Included Modules</div>
+<ul>
+  <li><a href="Random.html">Random</a></li>
+</ul>
+
+
+
+
+
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000293"></a><b>restore_snapshot</b>(snap)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000293_source')" id="l_M000293_source">show source</a> ]</p>
+  <div id="M000293_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/snapshot.rb, line 195</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">restore_snapshot</span>(<span class="ruby-identifier">snap</span>) <span class="ruby-identifier">replace</span>(<span class="ruby-identifier">snap</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000289"></a><b>stringify_keys</b>(&amp;filter)
+  </div>
+  <div class="description">
+  <p>
+Converts all keys in the <a href="Hash.html">Hash</a> to Strings, returning
+a new <a href="Hash.html">Hash</a>. With a <tt>filter</tt> parameter,
+limits conversion to only a certain selection of keys.
+</p>
+<pre>
+  foo = { :name=&gt;'Gavin', :wife=&gt;:Lisa }
+  foo.stringify_keys    #=&gt;  { &quot;name&quot;=&gt;&quot;Gavin&quot;, &quot;wife&quot;=&gt;:Lisa }
+  foo.inspect           #=&gt;  { :name =&gt;&quot;Gavin&quot;, :wife=&gt;:Lisa }
+</pre>
+<p>
+This method is considered archaic. Use rekey instead.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000289_source')" id="l_M000289_source">show source</a> ]</p>
+  <div id="M000289_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/hash/symbolize_keys.rb, line 59</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stringify_keys</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">filter</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filter</span>
+      <span class="ruby-identifier">rekey</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">filter</span>[<span class="ruby-identifier">k</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span> }
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">rekey</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> }
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000290"></a><b>stringify_keys!</b>(&amp;filter)
+  </div>
+  <div class="description">
+  <p>
+Synonym for <a href="Hash.html#M000289">Hash#stringify_keys</a>, but
+modifies the receiver in place and returns it. With a <tt>filter</tt>
+parameter, limits conversion to only a certain selection of keys.
+</p>
+<pre>
+  foo = { :name=&gt;'Gavin', :wife=&gt;:Lisa }
+  foo.stringify_keys!    #=&gt;  { &quot;name&quot;=&gt;&quot;Gavin&quot;, &quot;wife&quot;=&gt;:Lisa }
+  foo.inspect            #=&gt;  { &quot;name&quot;=&gt;&quot;Gavin&quot;, &quot;wife&quot;=&gt;:Lisa }
+</pre>
+<p>
+This method is considered archaic. Use rekey instead.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000290_source')" id="l_M000290_source">show source</a> ]</p>
+  <div id="M000290_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/hash/symbolize_keys.rb, line 78</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stringify_keys!</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">filter</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filter</span>
+      <span class="ruby-identifier">rekey!</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">filter</span>[<span class="ruby-identifier">k</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span> }
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">rekey!</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> }
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000287"></a><b>symbolize_keys</b>(&amp;filter)
+  </div>
+  <div class="description">
+  <p>
+Converts all keys in the <a href="Hash.html">Hash</a> to Symbols, returning
+a new <a href="Hash.html">Hash</a>. With a <tt>filter</tt>, limits
+conversion to only a certain selection of keys.
+</p>
+<pre>
+  foo = { :name=&gt;'Gavin', 'wife'=&gt;:Lisa }
+  foo.symbolize_keys    #=&gt;  { :name=&gt;&quot;Gavin&quot;, :wife=&gt;:Lisa }
+  foo.inspect           #=&gt;  { &quot;name&quot; =&gt;&quot;Gavin&quot;, &quot;wife&quot;=&gt;:Lisa }
+</pre>
+<p>
+This method is considered archaic. Use rekey instead.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000287_source')" id="l_M000287_source">show source</a> ]</p>
+  <div id="M000287_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/hash/symbolize_keys.rb, line 14</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">symbolize_keys</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">filter</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filter</span>
+      <span class="ruby-identifier">rekey</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">filter</span>[<span class="ruby-identifier">k</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span> }
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">rekey</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span> }
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000288"></a><b>symbolize_keys!</b>(&amp;filter)
+  </div>
+  <div class="description">
+  <p>
+Synonym for <a href="Hash.html#M000287">Hash#symbolize_keys</a>, but
+modifies the receiver in place and returns it. With a <tt>filter</tt>
+parameter, limits conversion to only a certain selection of keys.
+</p>
+<pre>
+  foo = { 'name'=&gt;'Gavin', 'wife'=&gt;:Lisa }
+  foo.symbolize_keys!    #=&gt;  { :name=&gt;&quot;Gavin&quot;, :wife=&gt;:Lisa }
+  foo.inspect            #=&gt;  { :name=&gt;&quot;Gavin&quot;, :wife=&gt;:Lisa }
+</pre>
+<p>
+This method is considered archaic. Use rekey instead.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000288_source')" id="l_M000288_source">show source</a> ]</p>
+  <div id="M000288_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/hash/symbolize_keys.rb, line 39</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">symbolize_keys!</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">filter</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filter</span>
+      <span class="ruby-identifier">rekey!</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">filter</span>[<span class="ruby-identifier">k</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span> }
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">rekey!</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span> }
+    <span class="ruby-keyword kw">end</span>
+
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000292"></a><b>take_snapshot</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000292_source')" id="l_M000292_source">show source</a> ]</p>
+  <div id="M000292_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/snapshot.rb, line 194</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">take_snapshot</span>() <span class="ruby-identifier">dup</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000294"></a><b>to_openobject</b>()
+  </div>
+  <div class="description">
+  <p>
+Convert a <a href="Hash.html">Hash</a> into an <a
+href="OpenObject.html">OpenObject</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000294_source')" id="l_M000294_source">show source</a> ]</p>
+  <div id="M000294_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/openobject.rb, line 241</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_openobject</span>
+    <span class="ruby-constant">OpenObject</span>[<span class="ruby-keyword kw">self</span>]
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000291"></a><b>to_xml</b>(root='root')
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000291_source')" id="l_M000291_source">show source</a> ]</p>
+  <div id="M000291_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/xmlhash.rb, line 67</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_xml</span>(<span class="ruby-identifier">root</span>=<span class="ruby-value str">'root'</span>)
+    <span class="ruby-constant">Blow</span><span class="ruby-operator">::</span><span class="ruby-constant">Hash2Xml</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-identifier">root</span>, <span class="ruby-keyword kw">self</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

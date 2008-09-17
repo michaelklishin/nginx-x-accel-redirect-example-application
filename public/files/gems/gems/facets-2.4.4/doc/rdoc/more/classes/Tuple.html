@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Tuple</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Tuple</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/lib/more/facets/tuple_rb.html">lib/more/facets/tuple.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><h1><a href="Tuple.html">Tuple</a></h1>
+<p>
+A tuple can be made using <a href="Tuple.html#M000583">new</a> or #[] just
+as one builds an array, or using the <a href="Tuple.html#M000587">to_t</a>
+method on a string or array. With a string tuple remembers the <a
+href="Tuple.html#M000611">first</a> non-alphanumeric character as the tuple
+<a href="Tuple.html#M000584">divider</a>.
+</p>
+<h2>Usage</h2>
+<pre>
+  t1 = Tuple[1,2,3]
+  t2 = Tuple[2,3,4]
+
+  t1 &lt; t2   #=&gt; true
+  t1 &gt; t2   #=&gt; false
+
+  t1 = '1.2.3'.to_t
+  t2 = '1-2-3'.to_t
+
+  puts t1  #=&gt; 1.2.3
+  puts t2  #=&gt; 1-2-3
+
+  t1 == t2  #=&gt; true
+</pre>
+<p>
+Keep in mind that <a href="Tuple.html">Tuple</a>[1,2,3] is not the same as
+<a
+href="Tuple.html">Tuple</a>[&#8216;1&#8217;,&#8217;2&#8217;,&#8217;3&#8217;].
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000601">&lt;&lt;</a></li>
+  <li><a href="#M000609">&lt;=&gt;</a></li>
+  <li><a href="#M000610">=~</a></li>
+  <li><a href="#M000597">[]</a></li>
+  <li><a href="#M000617">[]</a></li>
+  <li><a href="#M000598">[]=</a></li>
+  <li><a href="#M000619">cast_from_array</a></li>
+  <li><a href="#M000618">cast_from_string</a></li>
+  <li><a href="#M000620">constraint_to_lambda</a></li>
+  <li><a href="#M000584">divider</a></li>
+  <li><a href="#M000595">each</a></li>
+  <li><a href="#M000596">each_index</a></li>
+  <li><a href="#M000594">empty?</a></li>
+  <li><a href="#M000608">eql?</a></li>
+  <li><a href="#M000611">first</a></li>
+  <li><a href="#M000616">hash</a></li>
+  <li><a href="#M000599">index</a></li>
+  <li><a href="#M000586">inspect</a></li>
+  <li><a href="#M000612">last</a></li>
+  <li><a href="#M000593">length</a></li>
+  <li><a href="#M000613">major</a></li>
+  <li><a href="#M000614">minor</a></li>
+  <li><a href="#M000582">multiton_id</a></li>
+  <li><a href="#M000583">new</a></li>
+  <li><a href="#M000621">parse_constraint</a></li>
+  <li><a href="#M000602">pop</a></li>
+  <li><a href="#M000605">pot</a></li>
+  <li><a href="#M000604">pull</a></li>
+  <li><a href="#M000603">push</a></li>
+  <li><a href="#M000600">rindex</a></li>
+  <li><a href="#M000607">shift</a></li>
+  <li><a href="#M000592">size</a></li>
+  <li><a href="#M000615">teeny</a></li>
+  <li><a href="#M000589">to_a</a></li>
+  <li><a href="#M000590">to_ary</a></li>
+  <li><a href="#M000591">to_s</a></li>
+  <li><a href="#M000587">to_t</a></li>
+  <li><a href="#M000588">to_tuple</a></li>
+  <li><a href="#M000606">unshift</a></li>
+  <li><a href="#M000585">values</a></li>
+  </ul>
+
+<div class="sectiontitle">Included Modules</div>
+<ul>
+  <li><a href="Multiton.html">::Multiton</a></li>
+  <li><a href="Enumerable.html">::Enumerable</a></li>
+  <li>::Comparable</li>
+</ul>
+
+
+
+
+  <div class="sectiontitle">Attributes</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[RW]
+    </td>
+    <td class='attr-name'>default</td>
+    <td class='attr-desc'></td>
+  </tr>
+  </table>
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000617"></a><b>[]</b>( *args )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000617_source')" id="l_M000617_source">show source</a> ]</p>
+  <div id="M000617_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 226</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+      <span class="ruby-identifier">instance</span>( <span class="ruby-identifier">args</span> )
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000619"></a><b>cast_from_array</b>( arr )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000619_source')" id="l_M000619_source">show source</a> ]</p>
+  <div id="M000619_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 257</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cast_from_array</span>( <span class="ruby-identifier">arr</span> )
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance</span>( <span class="ruby-identifier">arr</span> )
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000618"></a><b>cast_from_string</b>( str, &amp;yld )
+  </div>
+  <div class="description">
+  <p>
+Translates a string in the form on a set of numerical and/or alphanumerical
+characters separated by non-word characters (eg \W+) into a <a
+href="Tuple.html">Tuple</a>. The <a href="Tuple.html#M000585">values</a> of
+the tuple will be converted to integers if they are purely numerical.
+</p>
+<pre>
+  Tuple.cast_from_string('1.2.3a')  #=&gt; [1,2,&quot;3a&quot;]
+</pre>
+<p>
+<a href="It.html">It</a> you would like to control the interpretation of <a
+href="Tuple.html#M000595">each</a> value as it is added to the tuple you
+can supply a block.
+</p>
+<pre>
+  Tuple.cast_from_string('1.2.3a'){ |v| v.upcase }  #=&gt; [&quot;1&quot;,&quot;2&quot;,&quot;3A&quot;]
+</pre>
+<p>
+This method is called by String#to_t.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000618_source')" id="l_M000618_source">show source</a> ]</p>
+  <div id="M000618_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 244</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cast_from_string</span>( <span class="ruby-identifier">str</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span> )
+      <span class="ruby-identifier">args</span> = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\W+/</span>)
+      <span class="ruby-identifier">div</span> = <span class="ruby-regexp re">/\W+/</span>.<span class="ruby-identifier">match</span>( <span class="ruby-identifier">str</span>.<span class="ruby-identifier">to_s</span> )[<span class="ruby-value">0</span>]
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+        <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">yld</span>[<span class="ruby-identifier">a</span>] }
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-regexp re">/^[0-9]+$/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">i</span> <span class="ruby-value">? </span><span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">i</span> }
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance</span>( <span class="ruby-identifier">args</span> ).<span class="ruby-identifier">divider</span>( <span class="ruby-identifier">div</span> )
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000620"></a><b>constraint_to_lambda</b>( constraint, &amp;yld )
+  </div>
+  <div class="description">
+  <p>
+Parses a constraint returning the operation as a lambda.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000620_source')" id="l_M000620_source">show source</a> ]</p>
+  <div id="M000620_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 263</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">constraint_to_lambda</span>( <span class="ruby-identifier">constraint</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span> )
+      <span class="ruby-identifier">op</span>, <span class="ruby-identifier">val</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">parse_constraint</span>( <span class="ruby-identifier">constraint</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span> )
+      <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">op</span>, <span class="ruby-identifier">val</span>) }
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000582"></a><b>multiton_id</b>(arg=0, default=0, &amp;block)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000582_source')" id="l_M000582_source">show source</a> ]</p>
+  <div id="M000582_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 83</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">multiton_id</span>(<span class="ruby-identifier">arg</span>=<span class="ruby-value">0</span>, <span class="ruby-identifier">default</span>=<span class="ruby-value">0</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+      <span class="ruby-identifier">values</span> = []
+      <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">times</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">values</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">block</span>[<span class="ruby-identifier">i</span>] }
+    <span class="ruby-identifier">elseif</span> <span class="ruby-constant">Integer</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">arg</span>
+      <span class="ruby-identifier">values</span> = [ <span class="ruby-identifier">default</span> ] <span class="ruby-operator">*</span> <span class="ruby-identifier">arg</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">values</span> = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">to_ary</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">values</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000583"></a><b>new</b>(arg=0, default=0, &amp;blk)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000583_source')" id="l_M000583_source">show source</a> ]</p>
+  <div id="M000583_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 95</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">arg</span>=<span class="ruby-value">0</span>, <span class="ruby-identifier">default</span>=<span class="ruby-value">0</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+      <span class="ruby-ivar">@values</span> = []
+      <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">times</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@values</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">blk</span>[<span class="ruby-identifier">i</span>] }
+    <span class="ruby-identifier">elseif</span> <span class="ruby-constant">Integer</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">arg</span>
+      <span class="ruby-ivar">@values</span> = [ <span class="ruby-identifier">default</span> ] <span class="ruby-operator">*</span> <span class="ruby-identifier">arg</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@values</span> = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">to_ary</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@default</span> = <span class="ruby-identifier">default</span>
+    <span class="ruby-ivar">@divider</span> = <span class="ruby-value str">'.'</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000621"></a><b>parse_constraint</b>( constraint, &amp;yld )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000621_source')" id="l_M000621_source">show source</a> ]</p>
+  <div id="M000621_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 268</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_constraint</span>( <span class="ruby-identifier">constraint</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span> )
+      <span class="ruby-identifier">constraint</span> = <span class="ruby-identifier">constraint</span>.<span class="ruby-identifier">strip</span>
+      <span class="ruby-identifier">re</span> = <span class="ruby-regexp re">%r{^(=~|~&gt;|&lt;=|&gt;=|==|=|&lt;|&gt;)?\s*(\d+(:?[-.]\d+)*)$}</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">md</span> = <span class="ruby-identifier">re</span>.<span class="ruby-identifier">match</span>( <span class="ruby-identifier">constraint</span> )
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">op</span> = <span class="ruby-identifier">md</span>[<span class="ruby-value">1</span>]
+          <span class="ruby-identifier">op</span> = <span class="ruby-value str">'=~'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">op</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'~&gt;'</span>
+          <span class="ruby-identifier">op</span> = <span class="ruby-value str">'=='</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">op</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'='</span>
+          <span class="ruby-identifier">val</span> = <span class="ruby-identifier">cast_from_string</span>( <span class="ruby-identifier">md</span>[<span class="ruby-value">2</span>], <span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span> ) <span class="ruby-comment cmt">#instance( md[2] )</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">op</span> = <span class="ruby-value str">'=='</span>
+          <span class="ruby-identifier">val</span> = <span class="ruby-identifier">cast_from_string</span>( <span class="ruby-identifier">constraint</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">yld</span> ) <span class="ruby-comment cmt">#instance( constraint )</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;invalid constraint&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">op</span>, <span class="ruby-identifier">val</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000601"></a><b>&lt;&lt;</b>( obj )
+  </div>
+  <div class="description">
+  <p>
+Unlike Array, <a href="Tuple.html">Tuple</a>#&lt;&lt; cannot act in place
+becuase <a href="Tuple.html">Tuple</a>&#8216;s are immutable.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000601_source')" id="l_M000601_source">show source</a> ]</p>
+  <div id="M000601_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 164</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;&lt;</span>( <span class="ruby-identifier">obj</span> )
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">instance</span>( <span class="ruby-identifier">to_a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">obj</span> )
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000609"></a><b>&lt;=&gt;</b>( other )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000609_source')" id="l_M000609_source">show source</a> ]</p>
+  <div id="M000609_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 190</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>( <span class="ruby-identifier">other</span> )
+    <span class="ruby-identifier">other</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">to_t</span>
+    [<span class="ruby-identifier">size</span>, <span class="ruby-identifier">other</span>.<span class="ruby-identifier">size</span>].<span class="ruby-identifier">max</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">c</span> = <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>]
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-value">0</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000610"></a><b>=~</b>( other )
+  </div>
+  <div class="description">
+  <p>
+For pessimistic constraint (like &#8217;~&gt;&#8217; in gems)
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000610_source')" id="l_M000610_source">show source</a> ]</p>
+  <div id="M000610_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 200</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">=~</span>( <span class="ruby-identifier">other</span> )
+    <span class="ruby-identifier">other</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">to_t</span>
+    <span class="ruby-identifier">upver</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">upver</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword kw">self</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">other</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">self</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">upver</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000597"></a><b>[]</b>(i)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000597_source')" id="l_M000597_source">show source</a> ]</p>
+  <div id="M000597_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 151</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">i</span>)
+    <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">i</span>,<span class="ruby-ivar">@default</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000598"></a><b>[]=</b>(i,v)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000598_source')" id="l_M000598_source">show source</a> ]</p>
+  <div id="M000598_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 155</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">i</span>,<span class="ruby-identifier">v</span>)
+    <span class="ruby-ivar">@values</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">v</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000584"></a><b>divider</b>( set=nil )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000584_source')" id="l_M000584_source">show source</a> ]</p>
+  <div id="M000584_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 110</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">divider</span>( <span class="ruby-identifier">set</span>=<span class="ruby-keyword kw">nil</span> )
+    <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@divider</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">set</span>
+    <span class="ruby-ivar">@divider</span> = <span class="ruby-identifier">set</span>
+    <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000595"></a><b>each</b>( &amp;block )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000595_source')" id="l_M000595_source">show source</a> ]</p>
+  <div id="M000595_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 143</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+    <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">each</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000596"></a><b>each_index</b>( &amp;block )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000596_source')" id="l_M000596_source">show source</a> ]</p>
+  <div id="M000596_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 147</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_index</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+    <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">each_index</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000594"></a><b>empty?</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000594_source')" id="l_M000594_source">show source</a> ]</p>
+  <div id="M000594_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 137</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">empty?</span>()
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@values</span> <span class="ruby-operator">==</span> [ <span class="ruby-ivar">@default</span> ] <span class="ruby-operator">*</span> <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">size</span>
+    <span class="ruby-keyword kw">false</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000608"></a><b>eql?</b>( other )
+  </div>
+  <div class="description">
+  <p>
+Returns true if two tuple references are for the very same tuple.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000608_source')" id="l_M000608_source">show source</a> ]</p>
+  <div id="M000608_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 185</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">eql?</span>( <span class="ruby-identifier">other</span> )
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">object_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">object_id</span>
+    <span class="ruby-comment cmt">#return true if values.eql? other.values</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000611"></a><b>first</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000611_source')" id="l_M000611_source">show source</a> ]</p>
+  <div id="M000611_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 207</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first</span>() <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000616"></a><b>hash</b>()
+  </div>
+  <div class="description">
+  <p>
+Unique <a href="Tuple.html#M000616">hash</a> value.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000616_source')" id="l_M000616_source">show source</a> ]</p>
+  <div id="M000616_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 216</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hash</span>
+    <span class="ruby-comment cmt"># TODO This needs to take into account the default</span>
+    <span class="ruby-comment cmt">#      and maybe the divider too.</span>
+    <span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">hash</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000599"></a><b>index</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000599_source')" id="l_M000599_source">show source</a> ]</p>
+  <div id="M000599_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 159</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>()  <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">index</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000586"></a><b>inspect</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000586_source')" id="l_M000586_source">show source</a> ]</p>
+  <div id="M000586_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 122</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inspect</span>() <span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">inspect</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000612"></a><b>last</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000612_source')" id="l_M000612_source">show source</a> ]</p>
+  <div id="M000612_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 208</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last</span>()  <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">last</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000593"></a><b>length</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000593_source')" id="l_M000593_source">show source</a> ]</p>
+  <div id="M000593_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 135</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">length</span>() <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">size</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000613"></a><b>major</b>()
+  </div>
+  <div class="description">
+  <p>
+These are useful for using a <a href="Tuple.html">Tuple</a> as a version.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000613_source')" id="l_M000613_source">show source</a> ]</p>
+  <div id="M000613_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 211</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">major</span>() <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000614"></a><b>minor</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000614_source')" id="l_M000614_source">show source</a> ]</p>
+  <div id="M000614_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 212</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">minor</span>() <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">1</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000602"></a><b>pop</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000602_source')" id="l_M000602_source">show source</a> ]</p>
+  <div id="M000602_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 168</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pop</span>() <span class="ruby-constant">Tuple</span>.<span class="ruby-identifier">instance</span>( <span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">pop</span> ) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000605"></a><b>pot</b>( obj )
+  </div>
+  <div class="description">
+  <p>
+Stands for &quot;Put On Top&quot;. This method is the opposite of <a
+href="Tuple.html#M000604">pull</a> and is otherwise known as <a
+href="Tuple.html#M000606">unshift</a>.
+</p>
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Tuple.html#M000606">unshift</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000605_source')" id="l_M000605_source">show source</a> ]</p>
+  <div id="M000605_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 178</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pot</span>( <span class="ruby-identifier">obj</span> ) <span class="ruby-constant">Tuple</span>.<span class="ruby-identifier">instance</span>( <span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">obj</span>) ) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000604"></a><b>pull</b>()
+  </div>
+  <div class="description">
+  <p>
+Pulls a value off the beginning of a tuple. This method is otherwsie known
+as <a href="Tuple.html#M000607">shift</a>.
+</p>
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Tuple.html#M000607">shift</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000604_source')" id="l_M000604_source">show source</a> ]</p>
+  <div id="M000604_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 174</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pull</span>() <span class="ruby-constant">Tuple</span>.<span class="ruby-identifier">instance</span>( <span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">shift</span> ) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000603"></a><b>push</b>( obj )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000603_source')" id="l_M000603_source">show source</a> ]</p>
+  <div id="M000603_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 170</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">push</span>( <span class="ruby-identifier">obj</span> ) <span class="ruby-constant">Tuple</span>.<span class="ruby-identifier">instance</span>( <span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">obj</span>) ) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000600"></a><b>rindex</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000600_source')" id="l_M000600_source">show source</a> ]</p>
+  <div id="M000600_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 160</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rindex</span>() <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">rindex</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000607"></a><b>shift</b>()
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="Tuple.html#M000604">pull</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000592"></a><b>size</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000592_source')" id="l_M000592_source">show source</a> ]</p>
+  <div id="M000592_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 134</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">size</span>()   <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">size</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000615"></a><b>teeny</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000615_source')" id="l_M000615_source">show source</a> ]</p>
+  <div id="M000615_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 213</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teeny</span>() <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">2</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000589"></a><b>to_a</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000589_source')" id="l_M000589_source">show source</a> ]</p>
+  <div id="M000589_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 127</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_a</span>()   <span class="ruby-constant">Array</span>(<span class="ruby-ivar">@values</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000590"></a><b>to_ary</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000590_source')" id="l_M000590_source">show source</a> ]</p>
+  <div id="M000590_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 128</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_ary</span>() <span class="ruby-constant">Array</span>(<span class="ruby-ivar">@values</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000591"></a><b>to_s</b>( divider=nil )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000591_source')" id="l_M000591_source">show source</a> ]</p>
+  <div id="M000591_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 130</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>( <span class="ruby-identifier">divider</span>=<span class="ruby-keyword kw">nil</span> )
+    <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">divider</span><span class="ruby-operator">||</span><span class="ruby-ivar">@divider</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000587"></a><b>to_t</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000587_source')" id="l_M000587_source">show source</a> ]</p>
+  <div id="M000587_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 124</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_t</span>()     <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000588"></a><b>to_tuple</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000588_source')" id="l_M000588_source">show source</a> ]</p>
+  <div id="M000588_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 125</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_tuple</span>() <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000606"></a><b>unshift</b>( obj )
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="Tuple.html#M000605">pot</a>
+</p>
+  </div>
+</div>
+<div class="sectiontitle">Protected Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000585"></a><b>values</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000585_source')" id="l_M000585_source">show source</a> ]</p>
+  <div id="M000585_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/tuple.rb, line 118</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">values</span>() <span class="ruby-ivar">@values</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

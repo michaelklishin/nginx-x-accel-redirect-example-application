@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Rope</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Rope</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/lib/more/facets/rope_rb.html">lib/more/facets/rope.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><h1><a href="Rope.html">Rope</a> Class</h1>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000114">+</a></li>
+  <li><a href="#M000113">&lt;&lt;</a></li>
+  <li><a href="#M000112">append</a></li>
+  <li><a href="#M000121">flat_strings</a></li>
+  <li><a href="#M000118">index</a></li>
+  <li><a href="#M000119">method_missing</a></li>
+  <li><a href="#M000108">new</a></li>
+  <li><a href="#M000107">new</a></li>
+  <li><a href="#M000110">normalize</a></li>
+  <li><a href="#M000115">prepend</a></li>
+  <li><a href="#M000109">replace</a></li>
+  <li><a href="#M000117">shift</a></li>
+  <li><a href="#M000116">slice</a></li>
+  <li><a href="#M000111">to_s</a></li>
+  <li><a href="#M000120">traverse</a></li>
+  </ul>
+
+
+
+
+
+  <div class="sectiontitle">Attributes</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>left</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>length</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>right</td>
+    <td class='attr-desc'></td>
+  </tr>
+  </table>
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000108"></a><b>new</b>(left=&quot;&quot;,right=&quot;&quot;)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000108_source')" id="l_M000108_source">show source</a> ]</p>
+  <div id="M000108_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 29</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">left</span>=<span class="ruby-value str">&quot;&quot;</span>,<span class="ruby-identifier">right</span>=<span class="ruby-value str">&quot;&quot;</span>)
+    <span class="ruby-ivar">@left</span>, <span class="ruby-ivar">@right</span> = <span class="ruby-identifier">left</span>, <span class="ruby-identifier">right</span>
+    <span class="ruby-ivar">@length</span> = <span class="ruby-ivar">@left</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@right</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000107"></a><b>new</b>(*args)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000107_source')" id="l_M000107_source">show source</a> ]</p>
+  <div id="M000107_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 19</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-constant">Rope</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">2</span>
+      <span class="ruby-keyword kw">super</span>
+    <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># build balanced tree</span>
+      <span class="ruby-identifier">mid</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span>
+      <span class="ruby-identifier">args</span>[<span class="ruby-identifier">mid</span>,<span class="ruby-value">2</span>] = <span class="ruby-constant">Rope</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>[<span class="ruby-identifier">mid</span>,<span class="ruby-value">2</span>])
+      <span class="ruby-constant">Rope</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000114"></a><b>+</b>(str)
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="Rope.html#M000112">append</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000113"></a><b>&lt;&lt;</b>(str)
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="Rope.html#M000112">append</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000112"></a><b>append</b>(str)
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Rope.html#M000113"><<</a>
+  <a href="Rope.html#M000114">+</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000112_source')" id="l_M000112_source">show source</a> ]</p>
+  <div id="M000112_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 48</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">append</span>(<span class="ruby-identifier">str</span>)
+    <span class="ruby-constant">Rope</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">str</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000118"></a><b>index</b>(letter,start=0)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000118_source')" id="l_M000118_source">show source</a> ]</p>
+  <div id="M000118_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 78</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>(<span class="ruby-identifier">letter</span>,<span class="ruby-identifier">start</span>=<span class="ruby-value">0</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">start</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span> <span class="ruby-comment cmt"># right</span>
+      <span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">right</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">letter</span>,<span class="ruby-identifier">start</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span>)
+    <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># left</span>
+      <span class="ruby-identifier">left</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">letter</span>,<span class="ruby-identifier">start</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">right</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">letter</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">rescue</span>
+    <span class="ruby-keyword kw">nil</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000119"></a><b>method_missing</b>(method, *args, &amp;block)
+  </div>
+  <div class="description">
+  <p>
+TODO implement rest of methods
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000119_source')" id="l_M000119_source">show source</a> ]</p>
+  <div id="M000119_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 89</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    (<span class="ruby-ivar">@method_missing_stack</span> <span class="ruby-operator">||=</span> []) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">method</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@method_missing_stack</span>[<span class="ruby-value">-2</span>] <span class="ruby-operator">==</span> <span class="ruby-ivar">@method_missing_stack</span>[<span class="ruby-value">-1</span>]
+      <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;recursive method missing -- #{method}&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">result</span> = <span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">method</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/!$/</span>
+        <span class="ruby-identifier">replace</span>(<span class="ruby-constant">Rope</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">result</span>))
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-constant">Rope</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">result</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">result</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000110"></a><b>normalize</b>()
+  </div>
+  <div class="description">
+  <p>
+clean out empty strings and rebuild tree
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000110_source')" id="l_M000110_source">show source</a> ]</p>
+  <div id="M000110_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 40</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">normalize</span>
+    <span class="ruby-constant">Rope</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">flat_strings</span>.<span class="ruby-identifier">reject</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:empty?</span>))
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000115"></a><b>prepend</b>(str)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000115_source')" id="l_M000115_source">show source</a> ]</p>
+  <div id="M000115_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 54</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prepend</span>(<span class="ruby-identifier">str</span>)
+    <span class="ruby-constant">Rope</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">str</span>,<span class="ruby-keyword kw">self</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000109"></a><b>replace</b>(rope)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000109_source')" id="l_M000109_source">show source</a> ]</p>
+  <div id="M000109_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 34</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">replace</span>(<span class="ruby-identifier">rope</span>)
+    <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">rope</span>.<span class="ruby-identifier">left</span>,<span class="ruby-identifier">rope</span>.<span class="ruby-identifier">right</span>)
+    <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000117"></a><b>shift</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000117_source')" id="l_M000117_source">show source</a> ]</p>
+  <div id="M000117_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 69</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">shift</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">letter</span> = <span class="ruby-identifier">string_shift</span>(<span class="ruby-identifier">left</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">string_shift</span>(<span class="ruby-identifier">right</span>)
+      <span class="ruby-ivar">@length</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">letter</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000116"></a><b>slice</b>(start,length=@length-start)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000116_source')" id="l_M000116_source">show source</a> ]</p>
+  <div id="M000116_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 58</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">slice</span>(<span class="ruby-identifier">start</span>,<span class="ruby-identifier">length</span>=<span class="ruby-ivar">@length</span><span class="ruby-operator">-</span><span class="ruby-identifier">start</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">start</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span> <span class="ruby-comment cmt"># right</span>
+      <span class="ruby-identifier">right</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-identifier">start</span><span class="ruby-operator">-</span><span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span>,<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span>)
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">length</span> <span class="ruby-comment cmt"># left and right</span>
+      <span class="ruby-identifier">left</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-identifier">start</span>,<span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span>) <span class="ruby-operator">+</span>
+      <span class="ruby-identifier">right</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-identifier">start</span><span class="ruby-operator">-</span><span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span>,<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-identifier">left</span>.<span class="ruby-identifier">length</span>)
+    <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># left</span>
+      <span class="ruby-identifier">left</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-identifier">start</span>,<span class="ruby-identifier">length</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000111"></a><b>to_s</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000111_source')" id="l_M000111_source">show source</a> ]</p>
+  <div id="M000111_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 44</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+    <span class="ruby-ivar">@left</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@right</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Protected Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000121"></a><b>flat_strings</b>()
+  </div>
+  <div class="description">
+  <p>
+collect all the flat strings
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000121_source')" id="l_M000121_source">show source</a> ]</p>
+  <div id="M000121_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 115</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">flat_strings</span>
+    <span class="ruby-identifier">ary</span> = []
+    <span class="ruby-identifier">traverse</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">str</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">str</span> }
+    <span class="ruby-identifier">ary</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000120"></a><b>traverse</b>(&amp;block)
+  </div>
+  <div class="description">
+  <p>
+<a href="Rope.html#M000120">traverse</a> the tree
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000120_source')" id="l_M000120_source">show source</a> ]</p>
+  <div id="M000120_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/rope.rb, line 109</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">traverse</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-ivar">@left</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Rope</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@left</span>.<span class="ruby-identifier">traverse</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-ivar">@left</span>)
+    <span class="ruby-ivar">@right</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Rope</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@right</span>.<span class="ruby-identifier">traverse</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-ivar">@right</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

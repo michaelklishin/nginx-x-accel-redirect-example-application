@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Time</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Time</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/lib/lore/facets/date_rb.html">lib/lore/facets/date.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000002">to_date</a></li>
+  <li><a href="#M000003">to_datetime</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000002"></a><b>to_date</b>()
+  </div>
+  <div class="description">
+  <p>
+Converts a <a href="Time.html">Time</a> object to a <a
+href="Date.html">Date</a>, dropping hour, minute, and second precision.
+</p>
+<pre>
+  my_time = Time.now  # =&gt; Mon Nov 12 22:59:51 -0500 2007
+  my_time.to_date     # =&gt; Mon, 12 Nov 2007
+
+  your_time = Time.parse(&quot;1/13/2009 1:13:03 P.M.&quot;)  # =&gt; Tue Jan 13 13:13:03 -0500 2009
+  your_time.to_date                                 # =&gt; Tue, 13 Jan 2009
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000002_source')" id="l_M000002_source">show source</a> ]</p>
+  <div id="M000002_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/date.rb, line 353</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_date</span>
+    <span class="ruby-operator">::</span><span class="ruby-constant">Date</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">year</span>, <span class="ruby-identifier">month</span>, <span class="ruby-identifier">day</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000003"></a><b>to_datetime</b>()
+  </div>
+  <div class="description">
+  <p>
+Converts a <a href="Time.html">Time</a> instance to a Ruby <a
+href="DateTime.html">DateTime</a> instance, preserving UTC offset.
+</p>
+<pre>
+  my_time = Time.now    # =&gt; Mon Nov 12 23:04:21 -0500 2007
+  my_time.to_datetime   # =&gt; Mon, 12 Nov 2007 23:04:21 -0500
+
+  your_time = Time.parse(&quot;1/13/2009 1:13:03 P.M.&quot;)  # =&gt; Tue Jan 13 13:13:03 -0500 2009
+  your_time.to_datetime                             # =&gt; Tue, 13 Jan 2009 13:13:03 -0500
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000003_source')" id="l_M000003_source">show source</a> ]</p>
+  <div id="M000003_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/lore/facets/date.rb, line 374</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_datetime</span>
+    <span class="ruby-operator">::</span><span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">civil</span>(<span class="ruby-identifier">year</span>, <span class="ruby-identifier">month</span>, <span class="ruby-identifier">day</span>, <span class="ruby-identifier">hour</span>, <span class="ruby-identifier">min</span>, <span class="ruby-identifier">sec</span>, <span class="ruby-constant">Rational</span>(<span class="ruby-identifier">utc_offset</span>, <span class="ruby-value">86400</span>))
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

@@ -1,0 +1,10 @@
+have_header: checking for stdio.h... -------------------- yes
+
+"gcc -E -I. -I/usr/local/lib/ruby/1.8/i686-darwin9.4.0 -I.  -g -O2 -pipe -fno-common  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <stdio.h>
+/* end */
+
+--------------------
+

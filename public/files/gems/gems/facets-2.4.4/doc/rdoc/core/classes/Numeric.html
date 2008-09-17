@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Numeric</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Numeric</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/lib/core/facets/numeric/distance_rb.html">lib/core/facets/numeric/distance.rb</a>
+<a href="../files/lib/core/facets/numeric/round_rb.html">lib/core/facets/numeric/round.rb</a>
+<a href="../files/lib/core/facets/numeric/approx_rb.html">lib/core/facets/numeric/approx.rb</a>
+<a href="../files/lib/core/facets/boolean_rb.html">lib/core/facets/boolean.rb</a>
+<a href="../files/lib/core/facets/blank_rb.html">lib/core/facets/blank.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+        <a href="Object.html">
+Object
+         </a>
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000202">approx?</a></li>
+  <li><a href="#M000204">blank?</a></li>
+  <li><a href="#M000199">distance</a></li>
+  <li><a href="#M000200">round_at</a></li>
+  <li><a href="#M000201">round_to</a></li>
+  <li><a href="#M000203">to_b</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000202"></a><b>approx?</b>(x, n=0.01)
+  </div>
+  <div class="description">
+  <p>
+Determines if another number is approximately equal within a given _n_th
+degree. Defaults to 100ths if the degree is not specified.
+</p>
+<pre>
+ CREDIT: Trans
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000202_source')" id="l_M000202_source">show source</a> ]</p>
+  <div id="M000202_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/core/facets/numeric/approx.rb, line 9</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">approx?</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">n</span>=<span class="ruby-value">0</span><span class="ruby-value">.01</span>)
+    <span class="ruby-keyword kw">return</span>(<span class="ruby-keyword kw">self</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">x</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    (<span class="ruby-keyword kw">self</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">x</span>).<span class="ruby-identifier">abs</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">n</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000204"></a><b>blank?</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000204_source')" id="l_M000204_source">show source</a> ]</p>
+  <div id="M000204_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/core/facets/blank.rb, line 56</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">blank?</span>
+    <span class="ruby-keyword kw">false</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000199"></a><b>distance</b>(other)
+  </div>
+  <div class="description">
+  <p>
+Returns the <a href="Numeric.html#M000199">distance</a> between self an
+another value. This is the same as #- but it provides an alternative for
+common naming between variant classes.
+</p>
+<pre>
+  4.distance(3)  #=&gt; 1
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000199_source')" id="l_M000199_source">show source</a> ]</p>
+  <div id="M000199_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/core/facets/numeric/distance.rb, line 9</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">distance</span>(<span class="ruby-identifier">other</span>)
+    <span class="ruby-keyword kw">self</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">other</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000200"></a><b>round_at</b>(*args)
+  </div>
+  <div class="description">
+  <p>
+Conceptually, rounding is expected to apply to floating point numbers.
+However it can actually be applied to pretty much and <a
+href="Numeric.html">Numeric</a> object. For example, one could round an <a
+href="Integer.html">Integer</a> to the nearest kilo. So the actual round.rb
+lib is in the numeric folder, but we&#8216;ll add this here for
+convenience.
+</p>
+<p>
+See <a href="Float.html#M000197">Float#round_at</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000200_source')" id="l_M000200_source">show source</a> ]</p>
+  <div id="M000200_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/core/facets/numeric/round.rb, line 11</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">round_at</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">round_at</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000201"></a><b>round_to</b>(*args)
+  </div>
+  <div class="description">
+  <p>
+See <a href="Float.html#M000198">Float#round_to</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000201_source')" id="l_M000201_source">show source</a> ]</p>
+  <div id="M000201_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/core/facets/numeric/round.rb, line 17</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">round_to</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">round_to</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000203"></a><b>to_b</b>()
+  </div>
+  <div class="description">
+  <p>
+Provides a boolean interpretation of self. If self == 0 then false else
+true.
+</p>
+<pre>
+  0.to_b    #=&gt; false
+  1.to_b    #=&gt; true
+  2.3.to_b  #=&gt; true
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000203_source')" id="l_M000203_source">show source</a> ]</p>
+  <div id="M000203_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/core/facets/boolean.rb, line 76</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_b</span>
+    <span class="ruby-keyword kw">self</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-keyword kw">false</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">true</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

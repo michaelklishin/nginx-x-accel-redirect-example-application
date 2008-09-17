@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: String::Mask</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />String::Mask</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../../files/lib/more/facets/string/mask_rb.html">lib/more/facets/string/mask.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><h1><a href="Mask.html">Mask</a></h1>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000662">&amp;</a></li>
+  <li><a href="#M000661">*</a></li>
+  <li><a href="#M000659">+</a></li>
+  <li><a href="#M000658">-</a></li>
+  <li><a href="#M000664">==</a></li>
+  <li><a href="#M000655">[]</a></li>
+  <li><a href="#M000651">[]</a></li>
+  <li><a href="#M000663">^</a></li>
+  <li><a href="#M000665">apply</a></li>
+  <li><a href="#M000653">inspect</a></li>
+  <li><a href="#M000667">instance_delegate</a></li>
+  <li><a href="#M000656">mask</a></li>
+  <li><a href="#M000657">mask!</a></li>
+  <li><a href="#M000668">method_missing</a></li>
+  <li><a href="#M000652">new</a></li>
+  <li><a href="#M000666">replace</a></li>
+  <li><a href="#M000654">to_s</a></li>
+  <li><a href="#M000660">|</a></li>
+  </ul>
+
+
+
+
+  <div class="sectiontitle">Constants</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class="attr-name">ESC</td>
+    <td>=</td>
+    <td class="attr-value">&quot;\032&quot;</td>
+  </tr>
+  </table>
+
+  <div class="sectiontitle">Attributes</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>string</td>
+    <td class='attr-desc'></td>
+  </tr>
+  </table>
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000651"></a><b>[]</b>(string, re=nil)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000651_source')" id="l_M000651_source">show source</a> ]</p>
+  <div id="M000651_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 18</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">string</span>, <span class="ruby-identifier">re</span>=<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">string</span>, <span class="ruby-identifier">re</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000652"></a><b>new</b>(string, re=nil)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000652_source')" id="l_M000652_source">show source</a> ]</p>
+  <div id="M000652_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 30</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">string</span>, <span class="ruby-identifier">re</span>=<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-ivar">@string</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">dup</span>
+      <span class="ruby-identifier">mask!</span>(<span class="ruby-identifier">re</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">re</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000662"></a><b>&amp;</b>(other)
+  </div>
+  <div class="description">
+  <p>
+<a href="Mask.html">Mask</a> AND. Only where they are then same filters
+through.
+</p>
+<pre>
+    &quot;abc..123&quot;      &quot;ab..789.&quot;
+  &amp; &quot;ab..789.&quot;    | &quot;abc..123&quot;
+    ----------      ----------
+    &quot;ab......&quot;      &quot;ab......&quot;
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000662_source')" id="l_M000662_source">show source</a> ]</p>
+  <div id="M000662_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 132</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&amp;</span>(<span class="ruby-identifier">other</span>)
+      <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-value str">''</span>
+      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">c</span> = <span class="ruby-identifier">string</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]) <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">ESC</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">o</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000661"></a><b>*</b>(other)
+  </div>
+  <div class="description">
+  <p>
+<a href="Mask.html">Mask</a> XAND. Where the characters are the same, the
+result is the same, where they differ the result reflects the later.
+</p>
+<pre>
+    &quot;abc..123&quot;      &quot;ab..789.&quot;
+  * &quot;ab..789.&quot;    | &quot;abc..123&quot;
+    ----------      ----------
+    &quot;ab..789.&quot;      &quot;abc..123&quot;
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000661_source')" id="l_M000661_source">show source</a> ]</p>
+  <div id="M000661_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 110</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">*</span>(<span class="ruby-identifier">other</span>)
+      <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-value str">''</span>
+      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">c</span> = <span class="ruby-identifier">string</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]) <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">o</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000659"></a><b>+</b>(other)
+  </div>
+  <div class="description">
+  <p>
+<a href="Mask.html">Mask</a> ADD. As long as there is a value other then
+empty the character filters though. The last string takes precedence.
+</p>
+<pre>
+    &quot;abc..123&quot;      &quot;ab..789.&quot;
+  + &quot;ab..789.&quot;    + &quot;abc..123&quot;
+    ----------      ----------
+    &quot;abc.7893&quot;      &quot;abc.7123&quot;
+</pre>
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Mask.html#M000660">|</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000659_source')" id="l_M000659_source">show source</a> ]</p>
+  <div id="M000659_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 84</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">+</span>(<span class="ruby-identifier">other</span>)
+      <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-value str">''</span>
+      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">ESC</span>
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">string</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">o</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000658"></a><b>-</b>(other)
+  </div>
+  <div class="description">
+  <p>
+<a href="Mask.html">Mask</a> subtraction. Where the characters are the
+same, the result is &quot;empty&quot;, where they differ the result
+reflects the last string.
+</p>
+<pre>
+    &quot;abc..123&quot;      &quot;ab..789.&quot;
+  - &quot;ab..789.&quot;    - &quot;abc..123&quot;
+    ----------      ----------
+    &quot;....789.&quot;      &quot;..c..123&quot;
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000658_source')" id="l_M000658_source">show source</a> ]</p>
+  <div id="M000658_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 61</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">-</span>(<span class="ruby-identifier">other</span>)
+      <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-value str">''</span>
+      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">string</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">ESC</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">o</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000664"></a><b>==</b>(other)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000664_source')" id="l_M000664_source">show source</a> ]</p>
+  <div id="M000664_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 171</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">other</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">other</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span><span class="ruby-operator">::</span><span class="ruby-constant">Mask</span>
+        <span class="ruby-identifier">string</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">string</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">string</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000655"></a><b>[]</b>(*a)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000655_source')" id="l_M000655_source">show source</a> ]</p>
+  <div id="M000655_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 40</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>)
+      <span class="ruby-identifier">string</span>[<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>]
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000663"></a><b>^</b>(other)
+  </div>
+  <div class="description">
+  <p>
+<a href="Mask.html">Mask</a> XOR operation. Only where there is an empty
+slot will the value filter.
+</p>
+<pre>
+    &quot;abc..123&quot;      &quot;ab..789.&quot;
+  | &quot;ab..789.&quot;    | &quot;abc..123&quot;
+    ----------      ----------
+    &quot;..c.7..3&quot;      &quot;..c.7..3&quot;
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000663_source')" id="l_M000663_source">show source</a> ]</p>
+  <div id="M000663_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 154</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">^</span>(<span class="ruby-identifier">other</span>)
+      <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-value str">''</span>
+      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">string</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">ESC</span>
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">ESC</span>
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">string</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">1</span>]
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">o</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">ESC</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">o</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000665"></a><b>apply</b>(s=nil,*a,&amp;b)
+  </div>
+  <div class="description">
+  <p>
+Apply a method to the internal string and return a <a
+href="Mask.html#M000652">new</a> <a href="Mask.html#M000656">mask</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000665_source')" id="l_M000665_source">show source</a> ]</p>
+  <div id="M000665_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 182</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">apply</span>(<span class="ruby-identifier">s</span>=<span class="ruby-keyword kw">nil</span>,<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>,<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">s</span>
+        <span class="ruby-identifier">string</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">s</span>,<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>,<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>).<span class="ruby-identifier">to_mask</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@_self</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Functor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">op</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">string</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">op</span>,<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>).<span class="ruby-identifier">to_mask</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000653"></a><b>inspect</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000653_source')" id="l_M000653_source">show source</a> ]</p>
+  <div id="M000653_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 37</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inspect</span> ; <span class="ruby-identifier">string</span>.<span class="ruby-identifier">inspect</span> ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000667"></a><b>instance_delegate</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000667_source')" id="l_M000667_source">show source</a> ]</p>
+  <div id="M000667_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 196</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">instance_delegate</span>
+      <span class="ruby-ivar">@string</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000656"></a><b>mask</b>(re)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000656_source')" id="l_M000656_source">show source</a> ]</p>
+  <div id="M000656_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 44</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mask</span>(<span class="ruby-identifier">re</span>)
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">string</span>,<span class="ruby-identifier">re</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000657"></a><b>mask!</b>(re)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000657_source')" id="l_M000657_source">show source</a> ]</p>
+  <div id="M000657_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 48</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mask!</span>(<span class="ruby-identifier">re</span>)
+      <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">re</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-constant">ESC</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">size</span> }
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000668"></a><b>method_missing</b>(s, *a, &amp;b)
+  </div>
+  <div class="description">
+  <p>
+Delegate any missing methods to underlying string.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000668_source')" id="l_M000668_source">show source</a> ]</p>
+  <div id="M000668_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 209</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">s</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">str</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">s</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NoMethodError</span>
+        <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">s</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000666"></a><b>replace</b>(string)
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000666_source')" id="l_M000666_source">show source</a> ]</p>
+  <div id="M000666_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 192</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">replace</span>(<span class="ruby-identifier">string</span>)
+      <span class="ruby-ivar">@string</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000654"></a><b>to_s</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000654_source')" id="l_M000654_source">show source</a> ]</p>
+  <div id="M000654_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/string/mask.rb, line 38</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>    ; <span class="ruby-identifier">string</span> ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000660"></a><b>|</b>(other)
+  </div>
+  <div class="description">
+  <p>
+Alias for #+
+</p>
+  </div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

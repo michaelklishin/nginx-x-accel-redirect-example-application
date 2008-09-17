@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Interval</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Interval</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/lib/more/facets/interval_rb.html">lib/more/facets/interval.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><h1><a href="Interval.html">Interval</a></h1>
+<p>
+While Ruby support the Range class out of the box, is does not quite
+fullfil the role od a real <a href="Interval.html">Interval</a> class. For
+instance, it does not support excluding the front sentinel. This is because
+Range also tries to do triple duty as a simple Sequence and as a simple <a
+href="Tuple.html">Tuple</a>-Pair, thus limiting its potential as an <a
+href="Interval.html">Interval</a>. The <a href="Interval.html">Interval</a>
+class remedies the situation by commiting to interval behavior, and then
+extends the class&#8217; capabilites beyond that of the standard Range in
+ways that naturally fall out of that.
+</p>
+<p>
+Range depends on two methods: succ and #&lt;=&gt;. If numeric ranges were
+the only concern, those could just as well be #+ and #&lt;=&gt;, but
+esoteric forms make that unfeasible &#8212;the obvious example being a
+String range. But a proper <a href="Interval.html">Interval</a> class
+requires mathematical continuation, thus the <a
+href="Interval.html">Interval</a> depends on #+ and #&lt;=&gt;, as well as
+#- as the inverse of #+.
+</p>
+<pre>
+  i = Interval.new(1,5)
+  i.to_a       #=&gt; [1,2,3,4,5]
+
+  i = Interval[0,5]
+  i.to_a(2)    #=&gt; [0,2,4]
+
+  i = Interval[1,5]
+  i.to_a(-1)   #=&gt; [5,4,3,2,1]
+
+  i = Interval[1,3]
+  i.to_a(1,2)  #=&gt; [1.0,1.5,2.0,2.5,3.0]
+</pre>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000564">+@</a></li>
+  <li><a href="#M000565">-@</a></li>
+  <li><a href="#M000574">===</a></li>
+  <li><a href="#M000543">[]</a></li>
+  <li><a href="#M000550">begin</a></li>
+  <li><a href="#M000557">closed</a></li>
+  <li><a href="#M000554">degenerate?</a></li>
+  <li><a href="#M000556">direction</a></li>
+  <li><a href="#M000568">distance</a></li>
+  <li><a href="#M000576">each</a></li>
+  <li><a href="#M000551">end</a></li>
+  <li><a href="#M000578">eql?</a></li>
+  <li><a href="#M000552">exclude_begin?</a></li>
+  <li><a href="#M000553">exclude_end?</a></li>
+  <li><a href="#M000548">exclude_first?</a></li>
+  <li><a href="#M000549">exclude_last?</a></li>
+  <li><a href="#M000546">first</a></li>
+  <li><a href="#M000560">first_closed</a></li>
+  <li><a href="#M000562">first_opened</a></li>
+  <li><a href="#M000559">half_closed</a></li>
+  <li><a href="#M000573">include?</a></li>
+  <li><a href="#M000547">last</a></li>
+  <li><a href="#M000561">last_closed</a></li>
+  <li><a href="#M000563">last_opened</a></li>
+  <li><a href="#M000569">length</a></li>
+  <li><a href="#M000572">max</a></li>
+  <li><a href="#M000575">member?</a></li>
+  <li><a href="#M000571">min</a></li>
+  <li><a href="#M000544">new</a></li>
+  <li><a href="#M000555">null?</a></li>
+  <li><a href="#M000558">opened</a></li>
+  <li><a href="#M000567">reversed</a></li>
+  <li><a href="#M000545">sentinels</a></li>
+  <li><a href="#M000570">size</a></li>
+  <li><a href="#M000577">step</a></li>
+  <li><a href="#M000566">~</a></li>
+  </ul>
+
+<div class="sectiontitle">Included Modules</div>
+<ul>
+  <li><a href="Multiton.html">Multiton</a></li>
+  <li><a href="EnumerablePass.html">EnumerablePass</a></li>
+</ul>
+
+
+
+
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000543"></a><b>[]</b>( *args )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000543_source')" id="l_M000543_source">show source</a> ]</p>
+  <div id="M000543_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 89</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-operator">[]</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000544"></a><b>new</b>(first, last, exclude_first=false, exclude_last=false )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000544_source')" id="l_M000544_source">show source</a> ]</p>
+  <div id="M000544_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 93</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">first</span>, <span class="ruby-identifier">last</span>, <span class="ruby-identifier">exclude_first</span>=<span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">exclude_last</span>=<span class="ruby-keyword kw">false</span> )
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;bad value for interval&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">last</span>.<span class="ruby-identifier">class</span>
+    <span class="ruby-ivar">@first</span> = <span class="ruby-identifier">first</span>
+    <span class="ruby-ivar">@last</span> = <span class="ruby-identifier">last</span>
+    <span class="ruby-ivar">@exclude_first</span> = <span class="ruby-identifier">exclude_first</span>
+    <span class="ruby-ivar">@exclude_last</span> = <span class="ruby-identifier">exclude_last</span>
+    <span class="ruby-ivar">@direction</span> = (<span class="ruby-ivar">@last</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-ivar">@first</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000564"></a><b>+@</b>()
+  </div>
+  <div class="description">
+  <p>
+Unary shorthands. These return a <a href="Interval.html#M000544">new</a>
+interval exclusive of <a href="Interval.html#M000546">first</a>, <a
+href="Interval.html#M000547">last</a> or both <a
+href="Interval.html#M000545">sentinels</a>, repectively.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000564_source')" id="l_M000564_source">show source</a> ]</p>
+  <div id="M000564_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 159</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">+@</span> ; <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">first</span>, <span class="ruby-identifier">last</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>) ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000565"></a><b>-@</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000565_source')" id="l_M000565_source">show source</a> ]</p>
+  <div id="M000565_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 160</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">-@</span> ; <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">first</span>, <span class="ruby-identifier">last</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>) ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000574"></a><b>===</b>(x)
+  </div>
+  <div class="description">
+  <p>
+Alias for include?
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000550"></a><b>begin</b>()
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="Interval.html#M000546">first</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000557"></a><b>closed</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns a <a href="Interval.html#M000544">new</a> interval inclusive of of
+both <a href="Interval.html#M000545">sentinels</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000557_source')" id="l_M000557_source">show source</a> ]</p>
+  <div id="M000557_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 139</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">closed</span>; <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@first</span>, <span class="ruby-ivar">@last</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">true</span>) ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000554"></a><b>degenerate?</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns <tt>true</tt> if the start and <a
+href="Interval.html#M000551">end</a> <a
+href="Interval.html#M000545">sentinels</a> are equal and the interval is <a
+href="Interval.html#M000557">closed</a>; otherwise <tt>false</tt>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000554_source')" id="l_M000554_source">show source</a> ]</p>
+  <div id="M000554_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 125</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">degenerate?</span> ; <span class="ruby-ivar">@direction</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">and</span> <span class="ruby-operator">!</span> (<span class="ruby-ivar">@exclusive_first</span> <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@exclusive_last</span>) ;  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000556"></a><b>direction</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns the <a href="Interval.html#M000556">direction</a> of the interval
+indicated by +1, 0 or -1.
+</p>
+<pre>
+  (1..5).direction  #=&gt; 1
+  (5..1).direction  #=&gt; -1
+  (1..1).direction  #=&gt; 0
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000556_source')" id="l_M000556_source">show source</a> ]</p>
+  <div id="M000556_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 136</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">direction</span> ; <span class="ruby-ivar">@direction</span> ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000568"></a><b>distance</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns the <a href="Interval.html#M000569">length</a> of the interval as
+the difference between the <a href="Interval.html#M000546">first</a> and <a
+href="Interval.html#M000547">last</a> elements. Returns <tt>nil</tt> if the
+sentinal objects do not support <a
+href="Interval.html#M000568">distance</a> comparison (<a
+href="Interval.html#M000568">distance</a>). TODO: Add <tt>n</tt> parameter
+to count segmentations like those produced by <a
+href="Interval.html#M000576">each</a>.
+</p>
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Interval.html#M000569">length</a>
+  <a href="Interval.html#M000570">size</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000568_source')" id="l_M000568_source">show source</a> ]</p>
+  <div id="M000568_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 175</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">distance</span>
+    <span class="ruby-ivar">@last</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@first</span>
+    <span class="ruby-comment cmt">#if @last.respond_to?( :distance )</span>
+    <span class="ruby-comment cmt">#  @last.distance( @first )</span>
+    <span class="ruby-comment cmt">#else</span>
+    <span class="ruby-comment cmt">#  #self.to_a.length</span>
+    <span class="ruby-comment cmt">#end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000576"></a><b>each</b>(n=1, d=nil) {|| ...}
+  </div>
+  <div class="description">
+  <p>
+Iterates over the interval, passing <a
+href="Interval.html#M000576">each</a> _n_th element to the block. If n is
+not given then n defaults to 1. Each _n_th <a
+href="Interval.html#M000577">step</a> is determined by invoking +++ or +\-+
+n, depending on the <a href="Interval.html#M000556">direction</a> of the
+interval. If n is negative the iteration is preformed in reverse form <a
+href="Interval.html#M000551">end</a> sentinal to front sentinal. A second
+parameter, d, can be given in which case the applied <a
+href="Interval.html#M000577">step</a> is calculated as a fraction of the
+interval&#8216;s <a href="Interval.html#M000569">length</a> times n / d.
+This allows iteration over the whole interval in equal sized segments.
+</p>
+<pre>
+  1..5.each { |e| ... }        #=&gt; 1 2 3 4 5
+  1..5.each(2) { |e| ... }     #=&gt; 1 3 5
+  1..5.each(1,2) { |e| ... }   #=&gt; 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0
+</pre>
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Interval.html#M000577">step</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000576_source')" id="l_M000576_source">show source</a> ]</p>
+  <div id="M000576_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 239</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each</span>(<span class="ruby-identifier">n</span>=<span class="ruby-value">1</span>, <span class="ruby-identifier">d</span>=<span class="ruby-keyword kw">nil</span>)  <span class="ruby-comment cmt"># :yield:</span>
+    <span class="ruby-keyword kw">return</span> (<span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@last</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@first</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">degenerate?</span>  <span class="ruby-comment cmt"># is this right for all values of n ?</span>
+    <span class="ruby-identifier">s</span> = <span class="ruby-identifier">d</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">abs</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Cannot iterate over zero length steps.&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">s</span> = <span class="ruby-identifier">s</span> <span class="ruby-operator">*</span> <span class="ruby-ivar">@direction</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">e</span> = <span class="ruby-ivar">@exclude_last</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@last</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@last</span>
+      <span class="ruby-comment cmt">#e = @exclude_last ? @last.pred(s) : @last</span>
+      <span class="ruby-identifier">t</span> = <span class="ruby-ivar">@exclude_last</span> <span class="ruby-operator">?</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+      <span class="ruby-comment cmt">#while e.cmp(@first) &gt;= t</span>
+      <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">e</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-ivar">@first</span>) <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">t</span>
+        <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">e</span>)
+        <span class="ruby-identifier">e</span> <span class="ruby-operator">-=</span> <span class="ruby-identifier">s</span>
+        <span class="ruby-comment cmt">#e = e.pred(s)</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">e</span> = <span class="ruby-ivar">@exclude_first</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@first</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@first</span>
+      <span class="ruby-comment cmt">#e = @exclude_first ? @first.succ(s) : @first</span>
+      <span class="ruby-identifier">t</span> = <span class="ruby-ivar">@exclude_last</span> <span class="ruby-operator">?</span> <span class="ruby-value">-1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+      <span class="ruby-comment cmt">#while e.cmp(@last) &lt;= t</span>
+      <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">e</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-ivar">@last</span>) <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">t</span>
+        <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">e</span>)
+        <span class="ruby-identifier">e</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">s</span>
+        <span class="ruby-comment cmt">#e = e.succ(s)</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000551"></a><b>end</b>()
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="Interval.html#M000547">last</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000578"></a><b>eql?</b>(other)
+  </div>
+  <div class="description">
+  <p>
+Compares two intervals to see if they are equal
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000578_source')" id="l_M000578_source">show source</a> ]</p>
+  <div id="M000578_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 274</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">eql?</span>(<span class="ruby-identifier">other</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@first</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@last</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">last</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@exclude_first</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">exclude_first?</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@exclude_last</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">exclude_last?</span>
+    <span class="ruby-keyword kw">true</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000552"></a><b>exclude_begin?</b>()
+  </div>
+  <div class="description">
+  <p>
+Alias for exclude_first?
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000553"></a><b>exclude_end?</b>()
+  </div>
+  <div class="description">
+  <p>
+Alias for exclude_last?
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000548"></a><b>exclude_first?</b>()
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Interval.html#M000552">exclude_begin?</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000548_source')" id="l_M000548_source">show source</a> ]</p>
+  <div id="M000548_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 115</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exclude_first?</span> ; <span class="ruby-ivar">@exclude_first</span> ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000549"></a><b>exclude_last?</b>()
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Interval.html#M000553">exclude_end?</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000549_source')" id="l_M000549_source">show source</a> ]</p>
+  <div id="M000549_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 116</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exclude_last?</span> ; <span class="ruby-ivar">@exclude_last</span> ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000546"></a><b>first</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns the <a href="Interval.html#M000546">first</a> or <a
+href="Interval.html#M000547">last</a> sentinal of the interval.
+</p>
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Interval.html#M000550">begin</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000546_source')" id="l_M000546_source">show source</a> ]</p>
+  <div id="M000546_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 111</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first</span> ; <span class="ruby-ivar">@first</span> ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000560"></a><b>first_closed</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns a <a href="Interval.html#M000544">new</a> interval with one of the
+two <a href="Interval.html#M000545">sentinels</a> <a
+href="Interval.html#M000558">opened</a> or <a
+href="Interval.html#M000557">closed</a>
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000560_source')" id="l_M000560_source">show source</a> ]</p>
+  <div id="M000560_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 152</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_closed</span> ; <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@first</span>, <span class="ruby-ivar">@last</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>) ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000562"></a><b>first_opened</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000562_source')" id="l_M000562_source">show source</a> ]</p>
+  <div id="M000562_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 154</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_opened</span> ; <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@first</span>, <span class="ruby-ivar">@last</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>) ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000559"></a><b>half_closed</b>(e=false)
+  </div>
+  <div class="description">
+  <p>
+Returns a <a href="Interval.html#M000544">new</a> interval with either the
+<a href="Interval.html#M000546">first</a> or the <a
+href="Interval.html#M000547">last</a> sentinel exclusive. If the parameter
+is false, the deafult, then the <a href="Interval.html#M000546">first</a>
+sentinel is excluded; if the parameter is true, the <a
+href="Interval.html#M000547">last</a> sentinel is excluded.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000559_source')" id="l_M000559_source">show source</a> ]</p>
+  <div id="M000559_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 147</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">half_closed</span>(<span class="ruby-identifier">e</span>=<span class="ruby-keyword kw">false</span>)
+    <span class="ruby-identifier">e</span> <span class="ruby-value">? </span><span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@first</span>, <span class="ruby-ivar">@last</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>) <span class="ruby-operator">:</span> <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@first</span>, <span class="ruby-ivar">@last</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000573"></a><b>include?</b>(x)
+  </div>
+  <div class="description">
+  <p>
+Returns true or false if the element is part of the interval.
+</p>
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Interval.html#M000574">===</a>
+  <a href="Interval.html#M000575">member?</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000573_source')" id="l_M000573_source">show source</a> ]</p>
+  <div id="M000573_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 197</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">include?</span>(<span class="ruby-identifier">x</span>)
+    <span class="ruby-comment cmt"># todo: infinity?</span>
+    <span class="ruby-identifier">tf</span> = <span class="ruby-identifier">exclude_first?</span> <span class="ruby-value">? </span><span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">tl</span> = <span class="ruby-identifier">exclude_last?</span> <span class="ruby-value">? </span><span class="ruby-operator">-</span><span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+    (<span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">first</span>) <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">tf</span> <span class="ruby-keyword kw">and</span> (<span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">last</span>) <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">tl</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000547"></a><b>last</b>()
+  </div>
+<div class="aka">
+  This method is also aliased as
+  <a href="Interval.html#M000551">end</a>
+</div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000547_source')" id="l_M000547_source">show source</a> ]</p>
+  <div id="M000547_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 112</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last</span> ; <span class="ruby-ivar">@last</span> ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000561"></a><b>last_closed</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000561_source')" id="l_M000561_source">show source</a> ]</p>
+  <div id="M000561_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 153</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last_closed</span> ; <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@first</span>, <span class="ruby-ivar">@last</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>) ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000563"></a><b>last_opened</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000563_source')" id="l_M000563_source">show source</a> ]</p>
+  <div id="M000563_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 155</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last_opened</span> ; <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@first</span>, <span class="ruby-ivar">@last</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>) ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000569"></a><b>length</b>()
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="Interval.html#M000568">distance</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000572"></a><b>max</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns the greater of the <a href="Interval.html#M000546">first</a> and <a
+href="Interval.html#M000547">last</a> sentinals.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000572_source')" id="l_M000572_source">show source</a> ]</p>
+  <div id="M000572_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 192</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">max</span>
+    ((<span class="ruby-ivar">@first</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-ivar">@last</span>) <span class="ruby-operator">==</span> <span class="ruby-value">1</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@first</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@last</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000575"></a><b>member?</b>(x)
+  </div>
+  <div class="description">
+  <p>
+Alias for include?
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000571"></a><b>min</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns the lesser of the <a href="Interval.html#M000546">first</a> and <a
+href="Interval.html#M000547">last</a> sentinals.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000571_source')" id="l_M000571_source">show source</a> ]</p>
+  <div id="M000571_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 187</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">min</span>
+    ((<span class="ruby-ivar">@first</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-ivar">@last</span>) <span class="ruby-operator">==</span> <span class="ruby-value">-1</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@first</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@last</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000555"></a><b>null?</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns <tt>true</tt> if the start and <a
+href="Interval.html#M000551">end</a> <a
+href="Interval.html#M000545">sentinels</a> are equal and the interval is
+open; otherwise <tt>false</tt>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000555_source')" id="l_M000555_source">show source</a> ]</p>
+  <div id="M000555_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 128</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">null?</span> ; <span class="ruby-ivar">@direction</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@exclusive_first</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@exclusive_last</span> ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000558"></a><b>opened</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns a <a href="Interval.html#M000544">new</a> interval exclusive of
+both <a href="Interval.html#M000545">sentinels</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000558_source')" id="l_M000558_source">show source</a> ]</p>
+  <div id="M000558_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 142</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">opened</span>; <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@first</span>, <span class="ruby-ivar">@last</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">true</span>) ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000567"></a><b>reversed</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns a <a href="Interval.html#M000544">new</a> interval with the <a
+href="Interval.html#M000545">sentinels</a> <a
+href="Interval.html#M000567">reversed</a>.
+</p>
+<pre>
+  (0..10).reversed  #=&gt; 10..0
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000567_source')" id="l_M000567_source">show source</a> ]</p>
+  <div id="M000567_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 167</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reversed</span>
+    <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@last</span>, <span class="ruby-ivar">@first</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">true</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000545"></a><b>sentinels</b>()
+  </div>
+  <div class="description">
+  <p>
+Returns a two element array of <a href="Interval.html#M000546">first</a>
+and <a href="Interval.html#M000547">last</a> <a
+href="Interval.html#M000545">sentinels</a>.
+</p>
+<pre>
+ (0..10).sentinels   #=&gt; [0,10]
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000545_source')" id="l_M000545_source">show source</a> ]</p>
+  <div id="M000545_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 106</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sentinels</span>
+    <span class="ruby-keyword kw">return</span> [<span class="ruby-ivar">@first</span>, <span class="ruby-ivar">@last</span>]
+  <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000570"></a><b>size</b>()
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="Interval.html#M000568">distance</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000577"></a><b>step</b>(n=1, d=nil)
+  </div>
+  <div class="description">
+  <p>
+Alias for <a href="Interval.html#M000576">each</a>
+</p>
+  </div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000566"></a><b>~</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000566_source')" id="l_M000566_source">show source</a> ]</p>
+  <div id="M000566_source" class="dyn-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/more/facets/interval.rb, line 161</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">~@</span> ; <span class="ruby-constant">Interval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">first</span>, <span class="ruby-identifier">last</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">true</span>) ; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>
